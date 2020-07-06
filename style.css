@@ -71,7 +71,7 @@ body {
 
 #button {
     color: #fffffe;
-    background: #ef4565;
+    background: #f45d48;
     display: inline-block;
     border-radius: 4px;
     padding: 4px;
@@ -142,7 +142,7 @@ body {
 a#link {
     text-decoration: none;
     font-weight: bold;
-    color: #ef4565;
+    color: #f45d48;
 }
 
 a#linknb {
@@ -156,4 +156,12 @@ a#top {
 
 #comment {
     font-size: small;
+}
+
+#m_text {
+    text-align: left;
+    margin-left: 20px;
+    background: #5f6c7b;
+    border-radius: 4px;
+    color: #fffffe;
 }
