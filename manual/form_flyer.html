@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Example Title</title>
+    <title>チラシ作成フォーム</title>
     <meta name="author" content="Your Name">
     <meta name="description" content="Example description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,29 +12,49 @@
     <link rel="icon" type="image/x-icon" href="" />
 
     <style>
-        #form1 {
+        main {
+            display: flex;
+        }
+
+        #selectForm {
             text-align: left;
-            border: 1px solid #094067;
+            width: 282px;
+            margin-right: 100px;
+        }
+
+        #innerForm {
+            position: fixed;
+        }
+
+        #previewWindow {
+            width: 850px;
+        }
+
+        #form1 {
+            border: 1px solid #000000;
             border-radius: 4px;
+            border-color: #094067;
+            background: #d8eefe;
             display: inline-block;
+            width: 100%;
         }
 
         #form2 {
-            text-align: left;
-            border: 1px solid #094067;
+            border: 1px solid #000000;
             border-radius: 4px;
+            border-color: #094067;
+            background: #d8eefe;
             display: inline-block;
+            width: 100%;
         }
 
         #form3 {
-            text-align: left;
-            border: 1px solid #094067;
+            border: 1px solid #000000;
             border-radius: 4px;
+            border-color: #094067;
+            background: #d8eefe;
             display: inline-block;
-        }
-
-        #form4 {
-            display: inline-block;
+            width: 100%;
         }
 
         #previewSelect {
@@ -47,46 +67,45 @@
 
         #info {
             font-size: large;
-            width: 800px;
+            width: 100%;
             text-align: center;
         }
 
         #infoinner {
             text-align: left;
-            border: 1px solid #094067;
+            border: 1px solid #000000;
             border-radius: 4px;
             padding: 4px;
         }
 
         #additional {
             font-size: large;
-            float: left;
             text-align: left;
-            margin-top: 40px;
-        }
-
-        #footer {
-            margin: 0 auto;
-            clear: right;
-            position: relative;
-            border: 1px solid #094067;
-            border-radius: 4px;
-            width: 650px;
-            height: 500px;
-        }
-
-        #mapWrap {
-            position: absolute;
-            overflow: hidden;
-            width: 650px;
-            height: 500px;
+            margin-top: 20px;
         }
 
         #tel {
-            float: right;
             text-align: left;
-            margin-left: 450px;
-            margin-bottom: 60px;
+            margin-left: auto;
+            width: 300px;
+        }
+
+        #footer {
+            padding-top: 20px;
+            position: relative;
+        }
+
+        #mapWrap {
+            overflow: hidden;
+            position: absolute;
+            width: 850px;
+            height: 530px;
+        }
+
+        #ymap {
+            width: 1500px;
+            height: 100%;
+            border: none;
         }
 
         #rr {
@@ -107,11 +126,16 @@
 
         #pointer {
             position: absolute;
-            left: 285px;
-            top: 200px
+            left: 380px;
+            top: 230px;
+        }
+        
+        #previewSe2 {
+            font-size: small;
         }
 
         @media print {
+
             #selectForm {
                 display: none;
             }
@@ -127,165 +151,176 @@
 <body>
     <main>
         <div id="selectForm">
-            <form name="mapForm" autocomplete="off">
-                <div id="form1">
-                    <table>
-                        <tr>
-                            <th>車両通行制限</th>
-                            <td>：<input type="radio" name="select" value="0" checked="checked" onChange="changes()"></td>
-                        </tr>
-                        <tr>
-                            <th>漏水修繕工事</th>
-                            <td>：<input type="radio" name="select" value="1" onChange="changes()"></td>
-                        </tr>
-                        <tr>
-                            <th>漏水修繕工事（断水）</th>
-                            <td>：<input type="radio" name="select" value="2" onChange="changes()"></td>
-                        </tr>
-                        <tr>
-                            <th>緊急修繕</th>
-                            <td>：<input type="radio" name="select" value="3" onChange="changes()"></td>
-                        </tr>
-                        <tr>
-                            <th>緊急修繕（断水）</th>
-                            <td>：<input type="radio" name="select" value="4" onChange="changes()"></td>
-                        </tr>
-                        <tr>
-                            <th>緊急修繕（濁水）</th>
-                            <td>：<input type="radio" name="select" value="5" onChange="changes()"></td>
-                        </tr>
-                    </table>
-                </div>
-                <div id="form2">
-                    <table>
-                        <tr>
-                            <th>青葉区</th>
-                            <td>：<input type="radio" name="area" value="仙台市青葉区" checked="checked" onChange="changes()"></td>
-                        </tr>
-                        <tr>
-                            <th>宮城野区</th>
-                            <td>：<input type="radio" name="area" value="仙台市宮城野区" onChange="changes()"></td>
-                        </tr>
-                        <tr>
-                            <th>若林区</th>
-                            <td>：<input type="radio" name="area" value="仙台市若林区" onChange="changes()"></td>
-                        </tr>
-                        <tr>
-                            <th>太白区</th>
-                            <td>：<input type="radio" name="area" value="仙台市太白区" onChange="changes()"></td>
-                        </tr>
-                        <tr>
-                            <th>泉区</th>
-                            <td>：<input type="radio" name="area" value="仙台市泉区" onChange="changes()"></td>
-                        </tr>
-                        <tr>
-                            <th>以下</th>
-                            <td><input type="text" name="address" onChange="changes()"></td>
-                        </tr>
-                    </table>
-                </div>
-                <div id="form3">
-                    <table>
-                        <tr>
-                            <th>日付</th>
-                            <td></td>
-                            <td>：令和
-                                <select name="year" onChange="changes()">
-                                    <option value="令和02年" selected="selected">02</option>
-                                    <option value="令和03年">03</option>
-                                    <option value="令和04年">04</option>
-                                    <option value="令和05年">05</option>
-                                    <option value="令和06年">06</option>
-                                    <option value="令和07年">07</option>
-                                    <option value="令和08年">08</option>
-                                    <option value="令和09年">09</option>
-                                </select>年
-                                <select name="month" onChange="changes()">
-                                    <option value="01月" selected="selected">01</option>
-                                    <option value="02月">02</option>
-                                    <option value="03月">03</option>
-                                    <option value="04月">04</option>
-                                    <option value="05月">05</option>
-                                    <option value="06月">06</option>
-                                    <option value="07月">07</option>
-                                    <option value="08月">08</option>
-                                    <option value="09月">09</option>
-                                    <option value="10月">10</option>
-                                    <option value="11月">11</option>
-                                    <option value="12月">12</option>
-                                </select>月
-                                <select name="day" onChange="changes()">
-                                    <option value="01日" selected="selected">01</option>
-                                    <option value="02日">02</option>
-                                    <option value="03日">03</option>
-                                    <option value="04日">04</option>
-                                    <option value="05日">05</option>
-                                    <option value="06日">06</option>
-                                    <option value="07日">07</option>
-                                    <option value="08日">08</option>
-                                    <option value="09日">09</option>
-                                    <option value="10日">10</option>
-                                    <option value="11日">11</option>
-                                    <option value="12日">12</option>
-                                    <option value="13日">13</option>
-                                    <option value="14日">14</option>
-                                    <option value="15日">15</option>
-                                    <option value="16日">16</option>
-                                    <option value="17日">17</option>
-                                    <option value="18日">18</option>
-                                    <option value="19日">19</option>
-                                    <option value="20日">20</option>
-                                    <option value="21日">21</option>
-                                    <option value="22日">22</option>
-                                    <option value="23日">23</option>
-                                    <option value="24日">24</option>
-                                    <option value="25日">25</option>
-                                    <option value="26日">26</option>
-                                    <option value="27日">27</option>
-                                    <option value="28日">28</option>
-                                    <option value="29日">29</option>
-                                    <option value="30日">30</option>
-                                    <option value="31日">31</option>
-                                </select>日
-                                <select name="week" onChange="changes()">
-                                    <option value="（月）" selected="selected">月</option>
-                                    <option value="（火）">火</option>
-                                    <option value="（水）">水</option>
-                                    <option value="（木）">木</option>
-                                    <option value="（金）">金</option>
-                                    <option value="（土）">土</option>
-                                    <option value="（日）">日</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>開始</th>
-                            <td></td>
-                            <td>：<input type="text" name="start" value="09:00" onChange="changes()"></td>
-                        </tr>
-                        <tr>
-                            <th>終了</th>
-                            <td></td>
-                            <td>：<input type="text" name="end" value="17:00" onChange="changes()"></td>
-                        </tr>
-                        <tr>
-                            <th>業者</th>
-                            <td></td>
-                            <td>：<input type="text" name="company" value="" onChange="changes()"></td>
-                        </tr>
-                        <tr>
-                            <th>担当</th>
-                            <td></td>
-                            <td>：<input type="text" name="telephone" value="" onChange="changes()"></td>
-                        </tr>
-                        <tr>
-                            <th>地図</th>
-                            <td>（埋め込みタグ）</td>
-                            <td>：<input id="clearV" type="text" name="tag" onChange="changes()">　<input type="button" value="クリア" onclick="clearText()">　<input type="button" value="印刷" onclick="window.print()"></td>
-                        </tr>
-                    </table>
-                </div>
-            </form>
+            <div id="innerForm">
+                <form name="mapForm" autocomplete="off">
+                    <div id="form1">
+                        <table>
+                            <tr>
+                                <th>車両通行制限</th>
+                                <td>：<input type="radio" name="select" value="0" checked="checked" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>漏水修繕工事</th>
+                                <td>：<input type="radio" name="select" value="1" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>漏水修繕工事（断水）</th>
+                                <td>：<input type="radio" name="select" value="2" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>緊急修繕</th>
+                                <td>：<input type="radio" name="select" value="3" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>緊急修繕（断水）</th>
+                                <td>：<input type="radio" name="select" value="4" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>緊急修繕（濁水）</th>
+                                <td>：<input type="radio" name="select" value="5" onChange="changes()"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <div id="form2">
+                        <table>
+                            <tr>
+                                <th>青葉区</th>
+                                <td>：<input type="radio" name="area" value="仙台市青葉区" checked="checked" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>宮城野区</th>
+                                <td>：<input type="radio" name="area" value="仙台市宮城野区" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>若林区</th>
+                                <td>：<input type="radio" name="area" value="仙台市若林区" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>太白区</th>
+                                <td>：<input type="radio" name="area" value="仙台市太白区" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>泉区</th>
+                                <td>：<input type="radio" name="area" value="仙台市泉区" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>以下</th>
+                                <td><input type="text" name="address" onChange="changes()"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <div id="form3">
+                        <table>
+                            <tr>
+                                <th>令和</th>
+                                <td></td>
+                                <td>：<select name="year" onChange="changes()">
+                                        <option value="令和02年" selected="selected">02</option>
+                                        <option value="令和03年">03</option>
+                                        <option value="令和04年">04</option>
+                                        <option value="令和05年">05</option>
+                                        <option value="令和06年">06</option>
+                                        <option value="令和07年">07</option>
+                                        <option value="令和08年">08</option>
+                                        <option value="令和09年">09</option>
+                                    </select>年
+                                    <select name="month" onChange="changes()">
+                                        <option value="01月" selected="selected">01</option>
+                                        <option value="02月">02</option>
+                                        <option value="03月">03</option>
+                                        <option value="04月">04</option>
+                                        <option value="05月">05</option>
+                                        <option value="06月">06</option>
+                                        <option value="07月">07</option>
+                                        <option value="08月">08</option>
+                                        <option value="09月">09</option>
+                                        <option value="10月">10</option>
+                                        <option value="11月">11</option>
+                                        <option value="12月">12</option>
+                                    </select>月
+                                    <select name="day" onChange="changes()">
+                                        <option value="01日" selected="selected">01</option>
+                                        <option value="02日">02</option>
+                                        <option value="03日">03</option>
+                                        <option value="04日">04</option>
+                                        <option value="05日">05</option>
+                                        <option value="06日">06</option>
+                                        <option value="07日">07</option>
+                                        <option value="08日">08</option>
+                                        <option value="09日">09</option>
+                                        <option value="10日">10</option>
+                                        <option value="11日">11</option>
+                                        <option value="12日">12</option>
+                                        <option value="13日">13</option>
+                                        <option value="14日">14</option>
+                                        <option value="15日">15</option>
+                                        <option value="16日">16</option>
+                                        <option value="17日">17</option>
+                                        <option value="18日">18</option>
+                                        <option value="19日">19</option>
+                                        <option value="20日">20</option>
+                                        <option value="21日">21</option>
+                                        <option value="22日">22</option>
+                                        <option value="23日">23</option>
+                                        <option value="24日">24</option>
+                                        <option value="25日">25</option>
+                                        <option value="26日">26</option>
+                                        <option value="27日">27</option>
+                                        <option value="28日">28</option>
+                                        <option value="29日">29</option>
+                                        <option value="30日">30</option>
+                                        <option value="31日">31</option>
+                                    </select>日
+                                    <select name="week" onChange="changes()">
+                                        <option value="（月）" selected="selected">月</option>
+                                        <option value="（火）">火</option>
+                                        <option value="（水）">水</option>
+                                        <option value="（木）">木</option>
+                                        <option value="（金）">金</option>
+                                        <option value="（土）">土</option>
+                                        <option value="（日）">日</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>開始</th>
+                                <td></td>
+                                <td>：<input type="text" name="start" value="09:00" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>終了</th>
+                                <td></td>
+                                <td>：<input type="text" name="end" value="17:00" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>断水</th>
+                                <td></td>
+                                <td>：<input type="text" name="dansui" value="09:00" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>通水</th>
+                                <td></td>
+                                <td>：<input type="text" name="tsusui" value="17:00" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>業者</th>
+                                <td></td>
+                                <td>：<input type="text" name="company" value="" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>担当</th>
+                                <td></td>
+                                <td>：<input type="text" name="telephone" value="" onChange="changes()"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <input type="button" value="印刷" onclick="window.print()">
+                    <a href="../index.html"><input type="button" value="戻る"></a>
+                </form>
+            </div>
         </div>
 
         <div id="previewWindow">
@@ -310,7 +345,7 @@
                             </tr>
                             <tr>
                                 <th>作業予定時間</th>
-                                <td>：<span id="previewSe">09:00～17:00</span>頃まで</td>
+                                <td>：<span id="previewSe">09:00～17:00</span>頃まで　<span id="previewSe2"></span></td>
                             </tr>
                         </table>
                     </div>
@@ -337,13 +372,12 @@
                 </div>
                 <div id="footer">
                     <div id="mapWrap">
-                        <span id="previewMap"></span>
+                        <iframe id="ymap" src="https://100map.net/y/"></iframe>
                     </div>
                     <div id="pointer"><img src="../image/pointer.png"></div>
                 </div>
             </div>
         </div>
-
     </main>
 
     <script>
@@ -353,7 +387,7 @@
             const addressV = document.mapForm.area.value + document.mapForm.address.value;
             const timeV = document.mapForm.year.value + document.mapForm.month.value + document.mapForm.day.value + document.mapForm.week.value;
             const seV = document.mapForm.start.value + "～" + document.mapForm.end.value;
-            const mapV = document.mapForm.tag.value;
+            const seV2 = "断水（" + document.mapForm.dansui.value + "～" + document.mapForm.tsusui.value + "）予定";
             const companyV = document.mapForm.company.value;
             const phoneV = document.mapForm.telephone.value;
 
@@ -362,13 +396,13 @@
             const s3 = "漏水修繕工事（断水）のお知らせ";
             const s4 = "給水管緊急修繕工事のお知らせ";
             const s5 = "給水管緊急修繕工事（工事）のお知らせ";
-            const s6 = "給水管緊急修繕工事（濁水）のお知らせ";
+            const s6 = "給水管緊急修繕工事（断水・濁水）のお知らせ";
             const c1 = "漏水修繕工事 （通行制限）";
             const c2 = "漏水修繕工事";
             const c3 = "漏水修繕工事 （断水）";
             const c4 = "給水管緊急修繕工事";
             const c5 = "給水管緊急修繕工事（工事）";
-            const c6 = "給水管緊急修繕工事（濁水）";
+            const c6 = "給水管緊急修繕工事（断水・濁水）";
 
             if (selectV == 0) {
                 document.getElementById("previewSelect").innerHTML = s1;
@@ -377,9 +411,10 @@
                 document.getElementById("previewAddress").innerHTML = addressV;
                 document.getElementById("previewTime").innerHTML = timeV;
                 document.getElementById("previewSe").innerHTML = seV;
+                const seV2 = "";
+                document.getElementById("previewSe2").innerHTML = seV2;
                 document.getElementById("previewCompany").innerHTML = companyV;
                 document.getElementById("previewTelephone").innerHTML = phoneV;
-                document.getElementById("previewMap").innerHTML = mapV;
             }
             if (selectV == 1) {
                 document.getElementById("previewSelect").innerHTML = s2;
@@ -388,9 +423,10 @@
                 document.getElementById("previewAddress").innerHTML = addressV;
                 document.getElementById("previewTime").innerHTML = timeV;
                 document.getElementById("previewSe").innerHTML = seV;
+                const seV2 = "";
+                document.getElementById("previewSe2").innerHTML = seV2;
                 document.getElementById("previewCompany").innerHTML = companyV;
                 document.getElementById("previewTelephone").innerHTML = phoneV;
-                document.getElementById("previewMap").innerHTML = mapV;
             }
             if (selectV == 2) {
                 document.getElementById("previewSelect").innerHTML = s3;
@@ -399,9 +435,9 @@
                 document.getElementById("previewAddress").innerHTML = addressV;
                 document.getElementById("previewTime").innerHTML = timeV;
                 document.getElementById("previewSe").innerHTML = seV;
+                document.getElementById("previewSe2").innerHTML = seV2;
                 document.getElementById("previewCompany").innerHTML = companyV;
                 document.getElementById("previewTelephone").innerHTML = phoneV;
-                document.getElementById("previewMap").innerHTML = mapV;
             }
             if (selectV == 3) {
                 document.getElementById("previewSelect").innerHTML = s4;
@@ -410,9 +446,10 @@
                 document.getElementById("previewAddress").innerHTML = addressV;
                 document.getElementById("previewTime").innerHTML = timeV;
                 document.getElementById("previewSe").innerHTML = seV;
+                const seV2 = "";
+                document.getElementById("previewSe2").innerHTML = seV2;
                 document.getElementById("previewCompany").innerHTML = companyV;
                 document.getElementById("previewTelephone").innerHTML = phoneV;
-                document.getElementById("previewMap").innerHTML = mapV;
             }
             if (selectV == 4) {
                 document.getElementById("previewSelect").innerHTML = s5;
@@ -421,9 +458,9 @@
                 document.getElementById("previewAddress").innerHTML = addressV;
                 document.getElementById("previewTime").innerHTML = timeV;
                 document.getElementById("previewSe").innerHTML = seV;
+                document.getElementById("previewSe2").innerHTML = seV2;
                 document.getElementById("previewCompany").innerHTML = companyV;
                 document.getElementById("previewTelephone").innerHTML = phoneV;
-                document.getElementById("previewMap").innerHTML = mapV;
             }
             if (selectV == 5) {
                 document.getElementById("previewSelect").innerHTML = s6;
@@ -432,20 +469,10 @@
                 document.getElementById("previewAddress").innerHTML = addressV;
                 document.getElementById("previewTime").innerHTML = timeV;
                 document.getElementById("previewSe").innerHTML = seV;
+                document.getElementById("previewSe2").innerHTML = seV2;
                 document.getElementById("previewCompany").innerHTML = companyV;
                 document.getElementById("previewTelephone").innerHTML = phoneV;
-                document.getElementById("previewMap").innerHTML = mapV;
             }
-        }
-
-        function mapTag() {
-            var answer = document.mapForm.tag.value;
-            localStorage.setItem('data', answer);
-        }
-
-        function clearText() {
-            var textClear = document.getElementById("clearV");
-            textClear.value = '';
         }
 
     </script>
