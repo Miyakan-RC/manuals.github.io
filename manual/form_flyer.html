@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>「広報チラシ」作成フォーム</title>
+    <meta name="Author" content="" />
+    <link rel="stylesheet" type="text/css" href="../style_v2.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="../favicon.png">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <header id="header">
+        <a href="" id="top">
+            <table>
+                <tr>
+                    <th><i class="material-icons-sharp">question_answer</i></th>
+                    <td id="title">「広報チラシ」作成フォーム</td>
+                </tr>
+            </table>
+        </a>
+    </header>
+
+    <div id="allWrap">
+        <div id="s_container">
+            <main id="side">
+                <div id="forms">
+                    <p id="viewTime"></p>
+                    <form name="form" autocomplete="off">
+                        <table id="genres">
+                            <tr>
+                                <th>工事内容</th>
+                                <td>：<select name="genre" onChange="changes()">
+                                        <option value="0" selected="selected">修繕工事</option>
+                                        <option value="1">修繕工事（断水）</option>
+                                        <option value="2">修繕工事（迂回）</option>
+                                        <option value="3">修繕工事（通行制限）</option>
+                                        <option value="4">節水のお知らせ</option>
+                                        <option value="5">カスタム</option>
+                                    </select></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td id="customGenres"><input type="text" name="customGenre" size="17" value="！工事内容入力！" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td id="customInfos"><textarea name="customInfo" cols="19" rows="25" onChange="changes()">！説明内容入力！<br><br>文章は改行せず続けて入力<br>改行を挿入したい場合には＜ｂｒ＞を「半角英数字」で改行場所に入力<br><br>右側の印刷プレビューと比較してみて下さい<br><br>　行頭を作る場合には全角でスペースを入力します<br>↑(全角スペース)</textarea></td>
+                            </tr>
+                            <tr>
+                                <th>エリア</th>
+                                <td>：<select name="area" onChange="changes()">
+                                        <option value="0" selected="selected">青葉区</option>
+                                        <option value="1">泉区</option>
+                                        <option value="2">宮城野区</option>
+                                        <option value="3">若林区</option>
+                                        <option value="4">太白区</option>
+                                        <option value="5">富谷市</option>
+                                        <option value="6">カスタム</option>
+                                    </select></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td id="customAreas"><input type="text" name="customArea" size="17" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>番地</th>
+                                <td>：<input type="text" name="address" size="17" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>日付</th>
+                                <td>：<select name="month" onChange="changes()">
+                                        <option value="01" selected="selected">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>月<select name="day" onChange="changes()">
+                                        <option value="01" selected="selected">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                        <option value="25">25</option>
+                                        <option value="26">26</option>
+                                        <option value="27">27</option>
+                                        <option value="28">28</option>
+                                        <option value="29">29</option>
+                                        <option value="30">30</option>
+                                        <option value="31">31</option>
+                                    </select>日
+                                    <span id="uDate"></span>
+                                </td>
+                            <tr>
+                                <th>作業開始</th>
+                                <td>：<select name="startHour" onChange="changes()">
+                                        <option value="00">00</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09" selected="selected">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                    </select>：<select name="startMin" onChange="changes()">
+                                        <option value="00" selected="selected">00</option>
+                                        <option value="15">15</option>
+                                        <option value="30">30</option>
+                                        <option value="45">45</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>作業終了</th>
+                                <td>：<select name="endHour" onChange="changes()">
+                                        <option value="00">00</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17" selected="selected">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                    </select>：<select name="endMin" onChange="changes()">
+                                        <option value="00" selected="selected">00</option>
+                                        <option value="15">15</option>
+                                        <option value="30">30</option>
+                                        <option value="45">45</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>業者</th>
+                                <td>：<input type="text" name="company" size="17" value="" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>担当</th>
+                                <td>：<input type="text" name="human" size="17" value="" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>電話</th>
+                                <td>：<input type="text" name="telephone" size="17" value="" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>断水</th>
+                                <td>：<select name="stop" onChange="changes()">
+                                        <option value="0">無</option>
+                                        <option value="1">有</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <table id="stopOn">
+                            <tr>
+                                <th>断水開始</th>
+                                <td>：<select name="stopHourStart" onChange="changes()">
+                                        <option value="00">00</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09" selected="selected">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                    </select>：<select name="stopMinStart" onChange="changes()">
+                                        <option value="00" selected="selected">00</option>
+                                        <option value="15">15</option>
+                                        <option value="30">30</option>
+                                        <option value="45">45</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>断水終了</th>
+                                <td>：<select name="stopHourEnd" onChange="changes()">
+                                        <option value="00">00</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17" selected="selected">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                    </select>：<select name="stopMinEnd" onChange="changes()">
+                                        <option value="00" selected="selected">00</option>
+                                        <option value="15">15</option>
+                                        <option value="30">30</option>
+                                        <option value="45">45</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <div>
+                            <a href="../index.html"><input type="button" value="戻る"></a>
+                            <input type="button" value="反映">
+                            <input type="button" value="印刷" onclick="window.print()">
+                        </div>
+                    </form>
+                </div>
+
+            </main>
+        </div>
+
+        <div id="wrap">
+            <div id="previewWindow">
+
+                <div id="info">
+                    <p id="attention">地域住民の皆様へ</p>
+                    <span id="previewSelect">給水管漏水修繕工事のお知らせ</span>
+                    <p id="infoinner">　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管修繕工事を下記の日程により実施いたします。<br>　住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。</p>
+                </div>
+
+                <div id="middle">
+                    <div id="addData">
+                        <table>
+                            <tr>
+                                <th>工事内容</th>
+                                <td>：<span id="previewGenre">給水管漏水修繕工事</span></td>
+                            </tr>
+                            <tr>
+                                <th>工事個所</th>
+                                <td>：<span id="previewAddress">仙台市青葉区</span></td>
+                            </tr>
+                            <tr>
+                                <th>工事日時</th>
+                                <td>：<span id="previewTime">令和00年00月00日 (曜)</span></td>
+                            </tr>
+                            <tr>
+                                <th>作業予定時間</th>
+                                <td>：<span id="previewStartEnd">09:00～17:00 頃まで</span></td>
+                            </tr>
+                        </table>
+                        <table id="stopView">
+                            <tr>
+                                <th>断水予定時間</th>
+                                <td>：<span id="previewStopSE"></span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="centerData">
+                        <table>
+                            <tr>
+                                <th>工事管理</th>
+                                <td>：</td>
+                                <td colspan="2">水道修繕受付センター</td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td></td>
+                                <td></td>
+                                <td id="centerData2">022-304-3299</td>
+                            </tr>
+                            <tr>
+                                <th>施工業者</th>
+                                <td>：</td>
+                                <td colspan="2"><span id="previewCompany">丸罰工業 (株)</span></td>
+                            </tr>
+                            <tr>
+                                <th>担当</th>
+                                <td>：</td>
+                                <td rowspan="2"><span id="previewHuman">無名</span></td>
+                                <td id="centerData3"><span id="previewTel">000-000-0000</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="maps">
+                    <div id="mapWrap">
+                        <iframe id="ymap" src="https://100map.net/y/"></iframe>
+                    </div>
+                    <div id="pointer"><img src="../image/pointer.png"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <img src="../image/fotter_logo.png">
+    </footer>
+
+    <script>
+        document.getElementById("viewTime").innerHTML = getNow();
+
+        function getNow() {
+            const weeks = ["日", "月", "火", "水", "木", "金", "土"]
+            const now = new Date();
+            const year = now.getFullYear() - 2018;
+            const mon = now.getMonth() + 1; //1を足すこと
+            const day = now.getDate();
+            const hour = now.getHours();
+            const min = now.getMinutes();
+            const sec = now.getSeconds();
+            const wee = now.getDay();
+
+            //出力用
+            //const s = year + "年" + mon + "月" + day + "日" + hour + "時" + min + "分" + sec + "秒";-->
+            document.getElementById("uDate").innerHTML = "(" + weeks[wee] + ")";
+            const s = "今日は　令和" + year + "年" + mon + "月" + day + "日（" + weeks[wee] + "）";
+            return s;
+        }
+
+        function changes() {
+            const genre1 = ["給水管漏水修繕工事のお知らせ", "給水管漏水修繕工事（断水）のお知らせ", "給水管漏水修繕工事（迂回）のお知らせ", "給水管漏水修繕工事（通行制限）のお知らせ", "工事に伴う節水のお知らせ（お願い）", document.form.customGenre.value];
+            const genre2 = ["給水管漏水修繕工事", "給水管漏水修繕工事（断水）", "給水管漏水修繕工事（迂回）", "給水管漏水修繕工事（通行制限）", document.form.customGenre.value, document.form.customGenre.value];
+            const areaV = ["仙台市青葉区", "仙台市泉区", "仙台市宮城野区", "仙台市若林区", "仙台市太白区", "富谷市", document.form.customArea.value];
+            const innerV = ["　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管修繕工事を下記の日程により実施いたします。<br><br>　住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、下記の日程におきまして給水管修繕工事のため「断水」とさせて頂きます。<br>　住民の皆様には、ご不便とご迷惑をお掛け致しますが、水の汲み置きなどのご協力をお願い致します。<br>　断水終了後にお水をご使用になる際は、蛇口を徐々に開け濁り水が出ないかご確認のうえ使用されますようお願い致します。また、蛇口から空気が出る場合は数分程度お水を流して頂ければご使用頂けます。<br><br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>　なお、工事箇所は車道幅員減少及び片側通行となりますが誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br><br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>　こちらの建物にお住いの方は節水にご協力をお願い致します。受水槽からの給水となっておりますので、直ちに断水とはなりませんが、通常の使用をされますと受水槽の中に確保された水が不足し、建物全体が断水する恐れがありますので、下記時間中の節水と事前の汲み置きをお願い致します。<br><br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。"]
+            const addV = document.form.address.value;
+            const infoV = document.form.customInfo.value;
+            const monthV = document.form.month.value;
+            const dayV = document.form.day.value;
+            const startH = document.form.startHour.value;
+            const startM = document.form.startMin.value;
+            const endH = document.form.endHour.value;
+            const endM = document.form.endMin.value;
+            const stopHs = document.form.stopHourStart.value;
+            const stopMs = document.form.stopMinStart.value;
+            const stopHe = document.form.stopHourEnd.value;
+            const stopMe = document.form.stopMinEnd.value;
+            const compV = document.form.company.value;
+            const humanV = document.form.human.value;
+            const teleV = document.form.telephone.value;
+            const weeks = ["(日)", "(月)", "(火)", "(水)", "(木)", "(金)", "(土)"]
+            const iYear = new Date().getFullYear();
+            const iMonth = document.form.month.value;
+            const iDay = document.form.day.value;
+            const user = new Date(iYear, iMonth - 1, iDay);
+            document.getElementById("uDate").innerHTML = weeks[user.getDay()];
+            document.getElementById("previewAddress").innerHTML = areaV[document.form.area.value] + addV;
+            document.getElementById("previewSelect").innerHTML = genre1[document.form.genre.value];
+            document.getElementById("previewGenre").innerHTML = genre2[document.form.genre.value];
+            document.getElementById("infoinner").innerHTML = innerV[document.form.genre.value];
+            document.getElementById("previewCompany").innerHTML = compV;
+            document.getElementById("previewHuman").innerHTML = humanV;
+            document.getElementById("previewTel").innerHTML = teleV;
+            document.getElementById("previewTime").innerHTML = "令和0" + (iYear - 2018) + "年" + monthV + "月" + dayV + "日 " + weeks[user.getDay()];
+            document.getElementById("previewStartEnd").innerHTML = startH + ":" + startM + "～" + endH + ":" + endM + " 頃まで";
+            document.getElementById("previewStopSE").innerHTML = stopHs + ":" + stopMs + "～" + stopHe + ":" + stopMe + " 頃まで";
+
+            if (document.form.genre.value == 4) {
+                document.getElementById("customGenres").style.display = "block";
+            } else {
+                if (document.form.genre.value == 5) {
+                    document.getElementById("customGenres").style.display = "block";
+                    document.getElementById("customInfos").style.display = "block";
+                    document.getElementById("infoinner").innerHTML = infoV;
+                } else {
+                    document.getElementById("customGenres").style.display = "none";
+                    document.getElementById("customInfos").style.display = "none";
+                }
+            }
+
+            if (document.form.area.value == 6) {
+                document.getElementById("customAreas").style.display = "block";
+            } else {
+                document.getElementById("customAreas").style.display = "none";
+            }
+            if (document.form.stop.value == 1) {
+                document.getElementById("stopOn").style.display = "block";
+                document.getElementById("stopView").style.display = "block";
+            } else {
+                document.getElementById("stopOn").style.display = "none";
+                document.getElementById("stopView").style.display = "none";
+            }
+        }
+
+        function changes2() {
+
+            const selectV = document.mapForm.select.value;
+            const addressV = document.mapForm.area.value + document.mapForm.address.value;
+            const timeV = document.mapForm.year.value + document.mapForm.month.value + document.mapForm.day.value + document.mapForm.week.value;
+            const seV = document.mapForm.start.value + "～" + document.mapForm.end.value;
+            const seV2 = "断水（" + document.mapForm.dansui.value + "～" + document.mapForm.tsusui.value + "）予定";
+            const companyV = document.mapForm.company.value;
+            const phoneV = document.mapForm.telephone.value;
+
+            const s1 = "漏水修繕工事（通行制限）のお知らせ";
+            const s2 = "漏水修繕工事のお知らせ";
+            const s3 = "漏水修繕工事（断水）のお知らせ";
+            const s4 = "給水管緊急修繕工事のお知らせ";
+            const s5 = "給水管緊急修繕工事（工事）のお知らせ";
+            const s6 = "給水管緊急修繕工事（断水・濁水）のお知らせ";
+            const c1 = "漏水修繕工事 （通行制限）";
+            const c2 = "漏水修繕工事";
+            const c3 = "漏水修繕工事 （断水）";
+            const c4 = "給水管緊急修繕工事";
+            const c5 = "給水管緊急修繕工事（工事）";
+            const c6 = "給水管緊急修繕工事（断水・濁水）";
+
+            if (selectV == 0) {
+                document.getElementById("previewSelect").innerHTML = s1;
+                document.getElementById("previewContent").innerHTML = s1;
+                document.getElementById("infoinner").innerHTML = "　市民の皆様には、日頃より水道事業に対し深いご理解とご協力をいただき誠にありがとうございます。この度、水道管漏水のため下記日程で<b>「修繕工事」</b>を行うこととなりました。<br>　工事箇所は道幅が狭く車輌の通行が制限されるため、工事時間中通行される方々には大変ご迷惑をおかけいたしますが、ご協力を頂きますよう宜しくお願い申し上げます。<br>　また、工事中は騒音・振動や交通規制により大変ご迷惑をお掛け致しますが、早期復旧に努めますので何卒ご協力お願い申し上げます。";
+                document.getElementById("previewAddress").innerHTML = addressV;
+                document.getElementById("previewTime").innerHTML = timeV;
+                document.getElementById("previewSe").innerHTML = seV;
+                const seV2 = "";
+                document.getElementById("previewSe2").innerHTML = seV2;
+                document.getElementById("previewCompany").innerHTML = companyV;
+                document.getElementById("previewTelephone").innerHTML = phoneV;
+            }
+            if (selectV == 1) {
+                document.getElementById("previewSelect").innerHTML = s2;
+                document.getElementById("previewContent").innerHTML = s2;
+                document.getElementById("infoinner").innerHTML = "　市民の皆様には、日頃より水道事業に対し深いご理解とご協力をいただき誠にありがとうございます。この度、水道管漏水のため下記日程で<b>「修繕工事」</b>を行うこととなりました。<br>　また、工事中は騒音・振動や交通規制により大変ご迷惑をお掛け致しますが、早期復旧に努めますので何卒ご協力お願い申し上げます。";
+                document.getElementById("previewAddress").innerHTML = addressV;
+                document.getElementById("previewTime").innerHTML = timeV;
+                document.getElementById("previewSe").innerHTML = seV;
+                const seV2 = "";
+                document.getElementById("previewSe2").innerHTML = seV2;
+                document.getElementById("previewCompany").innerHTML = companyV;
+                document.getElementById("previewTelephone").innerHTML = phoneV;
+            }
+            if (selectV == 2) {
+                document.getElementById("previewSelect").innerHTML = s3;
+                document.getElementById("previewContent").innerHTML = s3;
+                document.getElementById("infoinner").innerHTML = "　市民の皆様には、日頃より水道事業に対し深いご理解とご協力をいただき誠にありがとうございます。この度、水道管漏水のため下記日程で<b>「断水を伴う修繕工事」</b>を行うこととなりました。<br>　断水中、水の使用を予定されている場合には、予めの汲み置きなどでご対応をお願い致しております。断水終了後に水道を使用する際は、蛇口を徐々に開け、万が一蛇口から濁り水や出る場合には数分間お水を流して頂いた上でご使用されますようお願い致します。<br>　また、工事中は騒音・振動や交通規制により大変ご迷惑をお掛け致しますが、早期復旧に努めますので何卒ご協力お願い申し上げます。";
+                document.getElementById("previewAddress").innerHTML = addressV;
+                document.getElementById("previewTime").innerHTML = timeV;
+                document.getElementById("previewSe").innerHTML = seV;
+                document.getElementById("previewSe2").innerHTML = seV2;
+                document.getElementById("previewCompany").innerHTML = companyV;
+                document.getElementById("previewTelephone").innerHTML = phoneV;
+            }
+            if (selectV == 3) {
+                document.getElementById("previewSelect").innerHTML = s4;
+                document.getElementById("previewContent").innerHTML = s4;
+                document.getElementById("infoinner").innerHTML = "　市民の皆様には、日頃より水道事業に対し深いご理解とご協力をいただき誠にありがとうございます。この度、水道管漏水のため下記日程で<b>「緊急修繕工事」</b>を行うこととなりました。<br>　また、工事中は濁水に加え騒音・振動や交通規制により大変ご迷惑をお掛け致しますが、早期復旧に努めますので何卒ご協力お願い申し上げます。";
+                document.getElementById("previewAddress").innerHTML = addressV;
+                document.getElementById("previewTime").innerHTML = timeV;
+                document.getElementById("previewSe").innerHTML = seV;
+                const seV2 = "";
+                document.getElementById("previewSe2").innerHTML = seV2;
+                document.getElementById("previewCompany").innerHTML = companyV;
+                document.getElementById("previewTelephone").innerHTML = phoneV;
+            }
+            if (selectV == 4) {
+                document.getElementById("previewSelect").innerHTML = s5;
+                document.getElementById("previewContent").innerHTML = s5;
+                document.getElementById("infoinner").innerHTML = "　市民の皆様には、日頃より水道事業に対し深いご理解とご協力をいただき誠にありがとうございます。この度、水道管漏水のため下記日程で<b>「断水を伴う緊急修繕工事」</b>を行うこととなりました。<br>　断水中、水の使用を予定されている場合には、予めの汲み置きなどでご対応をお願い致しております。断水終了後に水道を使用する際は、蛇口を徐々に開け、万が一蛇口から濁り水や出る場合には数分間お水を流して頂いた上でご使用されますようお願い致します。<br>　また、工事中は濁水に加え騒音・振動や交通規制により大変ご迷惑をお掛け致しますが、早期復旧に努めますので何卒ご協力お願い申し上げます。";
+                document.getElementById("previewAddress").innerHTML = addressV;
+                document.getElementById("previewTime").innerHTML = timeV;
+                document.getElementById("previewSe").innerHTML = seV;
+                document.getElementById("previewSe2").innerHTML = seV2;
+                document.getElementById("previewCompany").innerHTML = companyV;
+                document.getElementById("previewTelephone").innerHTML = phoneV;
+            }
+            if (selectV == 5) {
+                document.getElementById("previewSelect").innerHTML = s6;
+                document.getElementById("previewContent").innerHTML = s6;
+                document.getElementById("infoinner").innerHTML = "　市民の皆様には、日頃より水道事業に対し深いご理解とご協力をいただき誠にありがとうございます。この度、水道管漏水のため下記日程で<b>「断水・濁水を伴う修繕工事」</b>を行うこととなりました。断水中、水の使用を予定されている場合には、予めの汲み置きなどでご対応をお願い致しております。<br>　エコ給湯機等の温水タンクを設置されているお客様におきましては、工事による濁水が混入する場合がございますので、下記時間帯はお湯の使用を控えていただくか流入弁または水抜栓の閉栓にご協力下さい。<br>　断水終了後に水道を使用する際は、蛇口を徐々に開け、万が一蛇口から濁り水や出る場合には数分間お水を流して頂いた上でご使用されますようお願い致します。<br>　また、工事中は騒音・振動や交通規制により大変ご迷惑をお掛け致しますが、早期復旧に努めますので何卒ご協力お願い申し上げます。";
+                document.getElementById("previewAddress").innerHTML = addressV;
+                document.getElementById("previewTime").innerHTML = timeV;
+                document.getElementById("previewSe").innerHTML = seV;
+                document.getElementById("previewSe2").innerHTML = seV2;
+                document.getElementById("previewCompany").innerHTML = companyV;
+                document.getElementById("previewTelephone").innerHTML = phoneV;
+            }
+        }
+    </script>
+
+</body></html>
