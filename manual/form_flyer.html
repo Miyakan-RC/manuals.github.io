@@ -31,6 +31,7 @@
             <main id="side">
                 <div id="forms">
                     <p id="viewTime"></p>
+                    <p id="comment">[20200716]　内海<br>只今フォーム編集中のため、印刷の際にレイアウトが崩れてしまう場合がありますがもうしばらくお待ちください。</p>
                     <form name="form" autocomplete="off">
                         <table id="genres">
                             <tr>
@@ -402,7 +403,7 @@
 
         function changes() {
             const genre1 = ["給水管漏水修繕工事のお知らせ", "給水管漏水修繕工事（断水）のお知らせ", "給水管漏水修繕工事（迂回）のお知らせ", "給水管漏水修繕工事（通行制限）のお知らせ", "工事に伴う節水のお知らせ（お願い）", document.form.customGenre.value];
-            const genre2 = ["給水管漏水修繕工事", "給水管漏水修繕工事（断水）", "給水管漏水修繕工事（迂回）", "給水管漏水修繕工事（通行制限）", document.form.customGenre.value, document.form.customGenre.value];
+            const genre2 = ["給水管漏水修繕工事", "給水管漏水修繕工事（断水）", "給水管漏水修繕工事（迂回）", "給水管漏水修繕工事（通行制限）", "給水管漏水修繕工事", document.form.customGenre.value];
             const areaV = ["仙台市青葉区", "仙台市泉区", "仙台市宮城野区", "仙台市若林区", "仙台市太白区", "富谷市", document.form.customArea.value];
             const innerV = ["　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管修繕工事を下記の日程により実施いたします。<br><br>　住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、下記の日程におきまして給水管修繕工事のため「断水」とさせて頂きます。<br>　住民の皆様には、ご不便とご迷惑をお掛け致しますが、水の汲み置きなどのご協力をお願い致します。<br>　断水終了後にお水をご使用になる際は、蛇口を徐々に開け濁り水が出ないかご確認のうえ使用されますようお願い致します。また、蛇口から空気が出る場合は数分程度お水を流して頂ければご使用頂けます。<br><br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>　なお、工事箇所は車道幅員減少及び片側通行となりますが誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br><br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>　こちらの建物にお住いの方は節水にご協力をお願い致します。受水槽からの給水となっておりますので、直ちに断水とはなりませんが、通常の使用をされますと受水槽の中に確保された水が不足し、建物全体が断水する恐れがありますので、下記時間中の節水と事前の汲み置きをお願い致します。<br><br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。"]
             const addV = document.form.address.value;
@@ -437,17 +438,13 @@
             document.getElementById("previewStartEnd").innerHTML = startH + ":" + startM + "～" + endH + ":" + endM + " 頃まで";
             document.getElementById("previewStopSE").innerHTML = stopHs + ":" + stopMs + "～" + stopHe + ":" + stopMe + " 頃まで";
 
-            if (document.form.genre.value == 4) {
+            if (document.form.genre.value == 5) {
                 document.getElementById("customGenres").style.display = "block";
+                document.getElementById("customInfos").style.display = "block";
+                document.getElementById("infoinner").innerHTML = infoV;
             } else {
-                if (document.form.genre.value == 5) {
-                    document.getElementById("customGenres").style.display = "block";
-                    document.getElementById("customInfos").style.display = "block";
-                    document.getElementById("infoinner").innerHTML = infoV;
-                } else {
-                    document.getElementById("customGenres").style.display = "none";
-                    document.getElementById("customInfos").style.display = "none";
-                }
+                document.getElementById("customGenres").style.display = "none";
+                document.getElementById("customInfos").style.display = "none";
             }
 
             if (document.form.area.value == 6) {
@@ -557,6 +554,9 @@
                 document.getElementById("previewTelephone").innerHTML = phoneV;
             }
         }
+
     </script>
 
-</body></html>
+</body>
+
+</html>
