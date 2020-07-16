@@ -252,14 +252,14 @@ a#top {
     clear: both;
     position: relative;
     width: 850px;
-    height: 700px;
+    height: 550px;
 }
 
 #mapWrap {
     overflow: hidden;
     position: absolute;
     width: 850px;
-    height: 700px;
+    height: 550px;
 }
 
 #ymap {
