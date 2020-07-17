@@ -1,229 +1,129 @@
-html {
-    height: 100%;
-}
+/*
+本体
+*/
 
 body {
-    font-family: 'Kosugi Maru', sans-serif;
-    width: 1300px;
-    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+main {
+    width: 1280px;
+    background: pink;
     margin: 0 auto;
 }
 
-#header {
-    border: 1px solid #094067;
-    padding: 4px;
+header {
+    background: white;
     color: #094067;
+    border: 1px solid #094067;
     border-radius: 4px;
-    margin-bottom: 4px;
-    margin-top: 4px;
+    margin: 4px 0px 4px 0px;
+
 }
 
 #title {
-    font-size: x-large;
-    background: #fffffe;
     font-weight: bold;
-    border-radius: 4px;
-    display: inline-block;
+    margin: 0;
     padding: 4px;
-    margin: 0 auto;
+    display: inline-block;
+
 }
 
 #allWrap {
+    display: -webkit-flex;
     display: flex;
-    margin-bottom: 4px;
-}
-
-#s_container {
-    width: 260px;
-    height: 1px;
-}
-
-#side {
-    position: fixed;
-    border: 1px solid #094067;
-    padding: 4px;
-    background: #d8eefe;
-    border-radius: 4px;
-    width: 250px;
-}
-
-#wrap {
-    width: 1036px;
-    border: 1px solid #094067;
-    border-radius: 4px;
-    margin-left: 4px;
-}
-
-#container {
-    color: #fffffe;
-    background-color: #094067;
-    border-radius: 4px;
-    padding: 4px;
-    margin-left: 4px;
-    margin-bottom: 4px;
-    width: 508px;
-}
-
-#timestamp {
-    color: #fffffe;
-    background: #3da9fc;
-    display: inline-block;
-    border-radius: 4px;
-    padding-left: 4px;
-    padding-right: 4px;
-    margin: 0;
-}
-
-#button {
-    color: #fffffe;
-    background: #f45d48;
-    display: inline-block;
-    border-radius: 4px;
-    padding: 4px;
-    margin: 4px;
-}
-
-#text {
-    margin: 0;
-    padding: 4px;
-}
-
-#sample {
-    text-align: center;
-    margin: 0;
-}
-
-#small {
-    margin: 0;
-    padding-left: 4px;
-    padding-right: 2px;
-    padding-top: 4px;
-    width: 244px;
-    height: 244px;
 }
 
 footer {
-    width: 1290px;
-    padding: 4px;
-    border-radius: 4px;
-    clear: both;
+    background: white;
     border: 1px solid #094067;
-    display: inline-block;
-    height: 87px;
-    margin-bottom: 4px;
-}
-
-#manual {
-    color: #fffffe;
-    background-color: #094067;
     border-radius: 4px;
     padding: 4px;
-    margin-left: 4px;
-    margin-bottom: 4px;
-    width: 1028px;
 }
 
-#manual_h {
-    color: #fffffe;
-    background-color: #094067;
-    display: inline-block;
-    border-radius: 4px;
-    padding: 4px;
-    margin-left: 4px;
-    margin-bottom: 4px;
+#footer_img {
+    font-size: 0;
 }
 
-#stamp {
-    margin-top: 12px;
-}
+/*
+サイドバー
+*/
 
-#h {
-    font-size: small;
-}
-
-a#link {
-    text-decoration: none;
-    font-weight: bold;
-    color: #f45d48;
-}
-
-a#linknb {
-    text-decoration: none;
-}
-
-a#top {
-    text-decoration: none;
-    color: #094067;
-}
-
-#comment {
-    font-size: small;
-}
-
-#m_text {
-    text-align: left;
-    margin-left: 20px;
-    background: #5f6c7b;
-    border-radius: 4px;
-    color: #fffffe;
-}
-
-#viewTime {
-    margin: 0 auto;
-    text-align: center;
-    font-weight: bold;
-    color: #f45d48;
-    border-radius: 4px;
+#sidebar {
+    width: 260px;
+    margin: 0px 4px 0px 0px;
 }
 
 #forms {
+    background: #d8eefe;
+    border: 1px solid #094067;
+    border-radius: 4px;
     text-align: left;
-    width: 100%;
+    padding: 4px;
+    top: 54px;
+    position: sticky;
 }
 
-#customGenres,
-#customAreas,
-#stopOn,
-#stopView,
-#customInfos {
-    display: none;
+#viewTime {
+    color: #f45d48;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
 }
 
-#addData {
-    margin-left: 20px;
+#comment {
+    background: white;
+    border-radius: 4px;
+    font-size: small;
+    padding: 4px;
+    margin: 0;
 }
 
-#addData th {
-    text-align: left;
+/*
+印刷プレビュー
+*/
+
+#wrap {
+    background: #d8eefe;
+    width: 1014px;
+    border: 1px solid #094067;
+    border-radius: 4px;
+    display: block;
 }
 
-#centerData2,
-#centerData3,
-#centerData th {
-    text-align: right;
-}
-
-#centerData {
-    margin-right: 20px;
-}
-
-#middle {
-    font-size: x-large;
-}
-
-#centerData {
-    float: right;
+#console,
+#console2 {
+    text-align: center;
+    padding: 0;
+    margin: 0;
 }
 
 #previewWindow {
+    background: #d8eefe;
     margin: 0 auto;
-    width: 1000px;
+    padding: 4px;
+}
+
+#printout {
+    background: white;
 }
 
 #info {
-    width: 1000px;
     text-align: center;
-    font-size: x-large;
+    margin-bottom: 20px;
+}
+
+#attention {
+    margin-top: 0;
+}
+
+#previewSelect {
+    font-weight: bold;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    background-color: #eee !important;
+    padding: 8px;
 }
 
 #info p {
@@ -234,55 +134,118 @@ a#top {
     border: 1px solid #000000;
     border-radius: 4px;
     padding: 4px;
+    margin-bottom: 0;
 }
 
-#previewSelect {
-    font-size: xx-large;
-    font-weight: bold;
-    border: 1px solid #000000;
-    border-radius: 4px;
-    background-color: #eee !important;
-    padding: 8px;
+#addData {
+    font-size: 0;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+#addDataIn {
+    display: inline-block;
+
+}
+
+#centerData {
+    font-size: 0;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+#centerDataIn {
+    display: inline-block;
 }
 
 #maps {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    width: 1006px;
+    height: 500px;
     margin: 0 auto;
-    clear: both;
     position: relative;
-    width: 850px;
-    height: 550px;
-}
-
-#mapWrap {
     overflow: hidden;
-    position: absolute;
-    width: 850px;
-    height: 550px;
 }
 
 #ymap {
-    width: 1500px;
+    width: 100%;
     height: 100%;
+    top: -10px;
     border: none;
+    position: absolute;
 }
 
 #pointer {
+    width: 116px;
+    height: 63px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
     position: absolute;
-    left: 425px;
-    top: 265px;
 }
 
-#attention {
-    font-size: x-large;
+/*
+テキスト
+*/
+
+a {
+    color: #094067;
+    text-decoration: none;
 }
 
+.ll {
+    text-align: left;
+}
+
+#centerData,
+#centerData2,
+#centerData3,
+#centerData th,
 #customInfos,
 #customAreas,
 #customGenres {
     text-align: right;
 }
+
+#addData th {
+    text-align: left;
+}
+
+#title,
+#attention,
+#infoinner,
+#addDataIn,
+#centerDataIn {
+    font-size: x-large;
+}
+
+#previewSelect {
+    font-size: xx-large;
+}
+
+#extra,
+#extra2 {
+    color: red;
+}
+
+/*
+非表示
+*/
+
+#customGenres,
+#customAreas,
+#stopOn,
+#stopView,
+#customInfos,
+#extra3,
+#dansui {
+    display: none;
+}
+
+/*
+印刷
+*/
 
 @media print {
 
@@ -290,13 +253,22 @@ a#top {
         -webkit-print-color-adjust: exact;
     }
 
-    header,
-    #s_container,
-    footer {
+    .hidden {
         display: none;
     }
 
+    main {
+        width: 100%;
+    }
+
     #wrap {
+        width: 100%;
         border: none;
+        padding: 0;
+    }
+
+    #previewWindow {
+        margin: 0 auto;
+        padding: 0;
     }
 }
