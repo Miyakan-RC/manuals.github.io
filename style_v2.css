@@ -9,7 +9,6 @@ body {
 
 main {
     width: 1280px;
-    background: pink;
     margin: 0 auto;
 }
 
@@ -141,11 +140,18 @@ footer {
     font-size: 0;
     margin-left: 20px;
     margin-bottom: 20px;
+    display: -webkit-flex;
+    display: flex;
 }
 
 #addDataIn {
     display: inline-block;
 
+}
+
+.logos {
+    font-size: 0;
+    display: inline-block;
 }
 
 #centerData {
@@ -160,7 +166,7 @@ footer {
 
 #maps {
     width: 1006px;
-    height: 500px;
+    height: 438px;
     margin: 0 auto;
     position: relative;
     overflow: hidden;
@@ -225,7 +231,8 @@ a {
 }
 
 #extra,
-#extra2 {
+#extra2,
+#extra3 {
     color: red;
 }
 
@@ -238,8 +245,9 @@ a {
 #stopOn,
 #stopView,
 #customInfos,
-#extra3,
-#dansui {
+#dansui,
+#annai,
+#extra3 {
     display: none;
 }
 
