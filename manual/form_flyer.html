@@ -23,7 +23,7 @@
             <div id="sidebar" class="hidden">
                 <div id="forms">
                     <p id="viewTime"></p>
-                    <p id="comment">[20200717]　内海<br>只今フォーム編集中のため、印刷の際にレイアウトが崩れてしまう場合がありますがもうしばらくお待ちください。<br><br></p>
+                    <p id="comment">[20200716]　内海<br>只今フォーム編集中のため、印刷の際にレイアウトが崩れてしまう場合がありますがもうしばらくお待ちください。</p>
                     <form name="form" autocomplete="off">
                         <table id="genres">
                             <tr>
@@ -188,15 +188,27 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>業者</th>
+                                <th>注釈追加</th>
+                                <td>：<select name="annaiOn" onChange="changes()">
+                                        <option value="0">無</option>
+                                        <option value="1">有</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td id="annai">：<input type="text" name="customAnnai" size="17" value="！注釈入力！" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>施工業者</th>
                                 <td>：<input type="text" name="company" size="17" onChange="changes()"></td>
                             </tr>
                             <tr>
-                                <th>担当</th>
+                                <th>現場担当</th>
                                 <td>：<input type="text" name="human" size="17" onChange="changes()"></td>
                             </tr>
                             <tr>
-                                <th>電話</th>
+                                <th>電話番号</th>
                                 <td>：<input type="text" name="telephone" size="17" onChange="changes()"></td>
                             </tr>
                         </table>
@@ -287,7 +299,7 @@
                         <div>
                             <a href="../index.html"><input type="button" value="戻る"></a>
                             <input type="button" value="反映">
-                            <input type="button" value="印刷" onclick="window.print()">
+                            <input type="button" value="印刷" onClick="check()">
                         </div>
                     </form>
                 </div>
@@ -299,7 +311,7 @@
                         <div id="info">
                             <p id="attention">地域住民の皆様へ</p>
                             <span id="previewSelect">給水管漏水修繕工事のお知らせ</span>
-                            <p id="infoinner">　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管修繕工事を下記の日程により実施いたします。<br>　住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。</p>
+                            <p id="infoinner">　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管修繕工事を下記の日程により実施いたします。<br><br>　住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。</p>
                         </div>
                         <div id="addData">
                             <div id="addDataIn">
@@ -346,6 +358,7 @@
                                     </tr>
                                 </table>
                             </div>
+                            <div><img class="logos" src="../image/08-000-06.jpg"></div>
                         </div>
                         <div id="centerData">
                             <div id="centerDataIn">
@@ -360,15 +373,15 @@
                                     </tr>
                                     <tr>
                                         <th>施工業者</th>
-                                        <td class="ll">：<span id="previewCompany">！業者名！</span></td>
+                                        <td class="ll">：<span id="previewCompany"></span></td>
                                     </tr>
                                     <tr>
                                         <th></th>
-                                        <td id="centerData3"><span id="previewTel">！000-000-0000！</span></td>
+                                        <td id="centerData3"><span id="previewTel"></span></td>
                                     </tr>
                                     <tr>
                                         <th>現場担当者</th>
-                                        <td class="ll">：<span id="previewHuman">！名前！</span></td>
+                                        <td class="ll">：<span id="previewHuman"></span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -391,6 +404,37 @@
     <script>
         document.getElementById("viewTime").innerHTML = getNow();
 
+        function check() {
+            if (document.form.address.value == "") {
+                alert("「番地」を入力して下さい！");
+                var alV = 1;
+            } else {
+                var alV = 0;
+            }
+            if (document.form.company.value == "") {
+                alert("「施工業者」を入力して下さい！");
+                var alV = 1;
+            } else {
+                var alV = 0;
+            }
+            if (document.form.human.value == "") {
+                alert("「現場担当者」を入力して下さい！");
+                var alV = 1;
+            } else {
+                var alV = 0;
+            }
+            if (document.form.telephone.value == "") {
+                alert("「電話番号」を入力して下さい！");
+                var alV = 1;
+            } else {
+                var alV = 0;
+            }
+            const setV = alV;
+            if (setV == 0) {
+                window.print();
+            }
+        }
+
         function getNow() {
             const weeks = ["日", "月", "火", "水", "木", "金", "土"]
             const now = new Date();
@@ -410,6 +454,8 @@
         }
 
         function changes() {
+            const genreV = document.form.genre.value;
+            const areaS = document.form.area.value;
             const genre1 = ["給水管漏水修繕工事のお知らせ", "給水管漏水修繕工事（断水）のお知らせ", "給水管漏水修繕工事（迂回）のお知らせ", "給水管漏水修繕工事（通行制限）のお知らせ", "工事に伴う節水のお知らせ（お願い）", document.form.customGenre.value];
             const genre2 = ["給水管漏水修繕工事", "給水管漏水修繕工事（断水）", "給水管漏水修繕工事（迂回）", "給水管漏水修繕工事（通行制限）", "給水管漏水修繕工事", document.form.customGenre.value];
             const areaV = ["仙台市青葉区", "仙台市泉区", "仙台市宮城野区", "仙台市若林区", "仙台市太白区", "富谷市", document.form.customArea.value];
@@ -429,16 +475,20 @@
             const compV = document.form.company.value;
             const humanV = document.form.human.value;
             const teleV = document.form.telephone.value;
+            const annaiV = document.form.customAnnai.value;
+            const stopOn = document.form.stop.value;
+            const anOnV = document.form.annaiOn.value;
             const weeks = ["(日)", "(月)", "(火)", "(水)", "(木)", "(金)", "(土)"]
             const iYear = new Date().getFullYear();
             const iMonth = document.form.month.value;
             const iDay = document.form.day.value;
             const user = new Date(iYear, iMonth - 1, iDay);
+            document.getElementById("customExtra").innerHTML = annaiV;
             document.getElementById("uDate").innerHTML = weeks[user.getDay()];
-            document.getElementById("previewAddress").innerHTML = areaV[document.form.area.value] + addV;
-            document.getElementById("previewSelect").innerHTML = genre1[document.form.genre.value];
-            document.getElementById("previewGenre").innerHTML = genre2[document.form.genre.value];
-            document.getElementById("infoinner").innerHTML = innerV[document.form.genre.value];
+            document.getElementById("previewAddress").innerHTML = areaV[areaS] + addV;
+            document.getElementById("previewSelect").innerHTML = genre1[genreV];
+            document.getElementById("previewGenre").innerHTML = genre2[genreV];
+            document.getElementById("infoinner").innerHTML = innerV[genreV];
             document.getElementById("previewCompany").innerHTML = compV;
             document.getElementById("previewHuman").innerHTML = humanV;
             document.getElementById("previewTel").innerHTML = teleV;
@@ -446,7 +496,45 @@
             document.getElementById("previewStartEnd").innerHTML = startH + ":" + startM + "～" + endH + ":" + endM + " 頃まで";
             document.getElementById("previewStopSE").innerHTML = stopHs + ":" + stopMs + "～" + stopHe + ":" + stopMe + " 頃まで";
 
-            if (document.form.genre.value == 1 && document.form.stop.value == 0) {
+            //注釈分岐
+            if (anOnV == 1) {
+                document.getElementById("annai").style.display = "block";
+                document.getElementById("extra3").style.display = "block";
+            } else {
+                document.getElementById("annai").style.display = "none";
+                document.getElementById("extra3").style.display = "none";
+            }
+
+            //断水分岐
+            if (genreV == 1) {
+                document.getElementById("dansui").style.display = "none";
+                document.getElementById("stopOn").style.display = "block";
+                document.getElementById("stopView").style.display = "block";
+                document.getElementById("extra").style.display = "none";
+            } else {
+                if (genreV == 5) {
+                    document.getElementById("dansui").style.display = "block";
+                    if (stopOn == 1) {
+                        document.getElementById("stopOn").style.display = "block";
+                        document.getElementById("stopView").style.display = "block";
+                        document.getElementById("extra").style.display = "none";
+                    } else {
+                        document.getElementById("stopOn").style.display = "none";
+                        document.getElementById("stopView").style.display = "none";
+                        document.getElementById("extra").style.display = "block";
+                    }
+                } else {
+                    document.getElementById("dansui").style.display = "none";
+                    document.getElementById("stopOn").style.display = "none";
+                    document.getElementById("stopView").style.display = "none";
+                    document.getElementById("extra").style.display = "block";
+                }
+            }
+        }
+
+    </script>
+
+    <!--if (document.form.genre.value == 1 && document.form.stop.value == 0) {
                 document.form.stop.value = 1;
                 document.getElementById("stopOn").style.display = "block";
                 document.getElementById("stopView").style.display = "block";
@@ -484,8 +572,8 @@
                 document.getElementById("customAreas").style.display = "block";
             } else {
                 document.getElementById("customAreas").style.display = "none";
-            }
-        }
-    </script>
+            }-->
 
-</body></html>
+</body>
+
+</html>
