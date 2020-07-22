@@ -39,6 +39,8 @@ footer {
     border: 1px solid #094067;
     border-radius: 4px;
     padding: 4px;
+    margin-bottom: 4px;
+    margin-top: 4px;
 }
 
 #footer_img {
