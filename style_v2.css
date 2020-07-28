@@ -114,7 +114,9 @@ footer {
 }
 
 #printout {
+    height: 1465px;
     background: white;
+    position: relative;
 }
 
 #info {
@@ -190,6 +192,11 @@ footer {
     left: 225px;
     bottom: 0;
     margin: auto;
+    position: absolute;
+}
+
+#mapOn {
+    bottom: 0;
     position: absolute;
 }
 
