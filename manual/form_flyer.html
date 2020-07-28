@@ -28,24 +28,36 @@
                         <table id="genres">
                             <tr>
                                 <th>工事内容</th>
-                                <td>：<select name="genre" onChange="changes()">
+                                <td>：<select name="genre" onChange="changes2()">
                                         <option value="0" selected="selected">修繕工事</option>
                                         <option value="1">修繕工事（断水）</option>
                                         <option value="2">修繕工事（迂回）</option>
                                         <option value="3">修繕工事（通行制限）</option>
                                         <option value="4">節水のお知らせ</option>
-                                        <option value="5">カスタム</option>
+                                    </select></td>
+                            </tr>
+                        </table>
+                        <table id="cGenres">
+                            <tr>
+                                <th>カスタム</th>
+                                <td>：<select name="genreCS" onChange="changes()">
+                                        <option value="0">無</option>
+                                        <option value="1">有</option>
                                     </select></td>
                             </tr>
                         </table>
                         <table id="customs">
                             <tr>
-                                <th></th>
-                                <td id="customGenres">：<input type="text" name="customGenre" size="17" value="" onChange="changes()"></td>
+                                <th>標題</th>
+                                <td id="customGenres">：<input type="text" name="customGenre" size="17" value="給水管漏水修繕工事のお知らせ" onChange="changes()"></td>
                             </tr>
                             <tr>
-                                <th>説明</th>
-                                <td id="customInfos"><textarea name="customInfo" cols="19" rows="25" onChange="changes()">文章は改行せず続けて入力<br>改行を挿入したい場合には＜ｂｒ＞を「<font color="red">半角英数字</font>」で改行場所に入力<br><br>左側の入力欄と右側の印刷プレビューを比較しながら入力して下さい<br><br>　行頭を作る場合には「<font color="red">全角</font>」でスペースを入力します<br>↑(全角スペース)</textarea></td>
+                                <th>工事内容</th>
+                                <td id="customGenres2">：<input type="text" name="customGenre2" size="17" value="給水管漏水修繕工事" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>説明<br><br>&lt;br&gt;<br>改行</th>
+                                <td id="customInfos"><textarea name="customInfo" cols="19" rows="25" onChange="changes()">地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管修繕工事を下記の日程により実施いたします。<br>住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。</textarea></td>
                             </tr>
                             <tr>
                                 <th>地図範囲</th>
@@ -195,22 +207,6 @@
                                     </select>
                                 </td>
                             </tr>
-                            <tr>
-                                <th>注釈追加</th>
-                                <td>：<select name="annaiOn" onChange="changes()">
-                                        <option value="0">無</option>
-                                        <option value="1">有</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <td id="textColors">：※<select name="come" onChange="changes()">
-                                        <option value="0" selected="selected">有</option>
-                                        <option value="1">無</option>
-                                    </select>　赤<input type="radio" name="redBlack" value="0" checked="checked" onChange="changes()">　黒<input type="radio" name="redBlack" value="1" onChange="changes()">
-                                </td>
-                            </tr>
                         </table>
                         <table id="stopOn">
                             <tr>
@@ -287,8 +283,24 @@
                         </table>
                         <table>
                             <tr>
+                                <th>注釈追加</th>
+                                <td>：<select name="annaiOn" onChange="changes()">
+                                        <option value="0">無</option>
+                                        <option value="1">有</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
                                 <th></th>
-                                <td id="annai">：<input type="text" name="customAnnai" size="17" value="" onChange="changes()"></td>
+                                <td id="textColors">：※<select name="come" onChange="changes()">
+                                        <option value="0" selected="selected">有</option>
+                                        <option value="1">無</option>
+                                    </select>　赤<input type="radio" name="redBlack" value="0" checked="checked" onChange="changes()">　黒<input type="radio" name="redBlack" value="1" onChange="changes()">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td id="annai">：<input type="text" name="customAnnai" size="17" value="注釈" onChange="changes()"></td>
                             </tr>
                             <tr>
                                 <th>施工業者</th>
@@ -524,14 +536,24 @@
             return s;
         }
 
+        function changes2() {
+            const genreV = document.form.genre.value;
+            const genre1 = ["給水管漏水修繕工事のお知らせ", "給水管漏水修繕工事（断水）のお知らせ", "給水管漏水修繕工事（迂回）のお知らせ", "給水管漏水修繕工事（通行制限）のお知らせ", "工事に伴う節水のお知らせ（お願い）"];
+            const genre2 = ["給水管漏水修繕工事", "給水管漏水修繕工事（断水）", "給水管漏水修繕工事（迂回）", "給水管漏水修繕工事（通行制限）", "給水管漏水修繕工事"];const innerV = ["地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管修繕工事を下記の日程により実施いたします。<br>住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、下記の日程におきまして給水管修繕工事のため「断水」とさせて頂きます。<br>住民の皆様には、ご不便とご迷惑をお掛け致しますが、水の汲み置きなどのご協力をお願い致します。<br>断水終了後にお水をご使用になる際は、蛇口を徐々に開け濁り水が出ないかご確認のうえ使用されますようお願い致します。また、蛇口から空気が出る場合は数分程度お水を流して頂ければご使用頂けます。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>なお、迂回のご協力をお願い致しますが、敷鉄板を用いて車の通行は可能です。誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>なお、工事箇所は車道幅員減少及び片側通行となりますが誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>こちらの建物にお住いの方は節水にご協力をお願い致します。受水槽からの給水となっておりますので、直ちに断水とはなりませんが、通常の使用をされますと受水槽の中に確保された水が不足し、建物全体が断水する恐れがありますので、下記時間中の節水と事前の汲み置きをお願い致します。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。"];
+            document.form.customGenre.value = genre1[genreV];
+            document.form.customGenre2.value = genre2[genreV];
+            document.form.customInfo.value = innerV[genreV];
+            changes();
+        }
+
         function changes() {
             const cms = document.form.customMapSize.value + "px";
             const genreV = document.form.genre.value;
             const areaS = document.form.area.value;
-            const genre1 = ["給水管漏水修繕工事のお知らせ", "給水管漏水修繕工事（断水）のお知らせ", "給水管漏水修繕工事（迂回）のお知らせ", "給水管漏水修繕工事（通行制限）のお知らせ", "工事に伴う節水のお知らせ（お願い）", document.form.customGenre.value];
-            const genre2 = ["給水管漏水修繕工事", "給水管漏水修繕工事（断水）", "給水管漏水修繕工事（迂回）", "給水管漏水修繕工事（通行制限）", "給水管漏水修繕工事", document.form.customGenre.value];
+            const genre1 = ["給水管漏水修繕工事のお知らせ", "給水管漏水修繕工事（断水）のお知らせ", "給水管漏水修繕工事（迂回）のお知らせ", "給水管漏水修繕工事（通行制限）のお知らせ", "工事に伴う節水のお知らせ（お願い）"];
+            const genre2 = ["給水管漏水修繕工事", "給水管漏水修繕工事（断水）", "給水管漏水修繕工事（迂回）", "給水管漏水修繕工事（通行制限）", "給水管漏水修繕工事"];
             const areaV = ["仙台市青葉区", "仙台市泉区", "仙台市宮城野区", "仙台市若林区", "仙台市太白区", "富谷市", document.form.customArea.value];
-            const innerV = ["地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管修繕工事を下記の日程により実施いたします。<br>住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、下記の日程におきまして給水管修繕工事のため「断水」とさせて頂きます。<br>住民の皆様には、ご不便とご迷惑をお掛け致しますが、水の汲み置きなどのご協力をお願い致します。<br>断水終了後にお水をご使用になる際は、蛇口を徐々に開け濁り水が出ないかご確認のうえ使用されますようお願い致します。また、蛇口から空気が出る場合は数分程度お水を流して頂ければご使用頂けます。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>なお、迂回のご協力をお願い致しますが、敷鉄板を用いて車の通行は可能です。誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>なお、工事箇所は車道幅員減少及び片側通行となりますが誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>こちらの建物にお住いの方は節水にご協力をお願い致します。受水槽からの給水となっておりますので、直ちに断水とはなりませんが、通常の使用をされますと受水槽の中に確保された水が不足し、建物全体が断水する恐れがありますので、下記時間中の節水と事前の汲み置きをお願い致します。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", document.form.customInfo.value];
+            const innerV = ["地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管修繕工事を下記の日程により実施いたします。<br>住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、下記の日程におきまして給水管修繕工事のため「断水」とさせて頂きます。<br>住民の皆様には、ご不便とご迷惑をお掛け致しますが、水の汲み置きなどのご協力をお願い致します。<br>断水終了後にお水をご使用になる際は、蛇口を徐々に開け濁り水が出ないかご確認のうえ使用されますようお願い致します。また、蛇口から空気が出る場合は数分程度お水を流して頂ければご使用頂けます。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>なお、迂回のご協力をお願い致しますが、敷鉄板を用いて車の通行は可能です。誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>なお、工事箇所は車道幅員減少及び片側通行となりますが誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>こちらの建物にお住いの方は節水にご協力をお願い致します。受水槽からの給水となっておりますので、直ちに断水とはなりませんが、通常の使用をされますと受水槽の中に確保された水が不足し、建物全体が断水する恐れがありますので、下記時間中の節水と事前の汲み置きをお願い致します。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。"];
             const mapS = ["635px", "455px", "525px", "565px", "490px", cms];
             const mapSS = ["595px", "415px", "485px", "520px", "450px", cms];
             const mapSSS = ["645px", "465px", "535px", "575px", "500px", cms + 10]
@@ -566,9 +588,6 @@
             document.getElementById("customExtra").innerHTML = annaiV;
             document.getElementById("uDate").innerHTML = weeks[user.getDay()];
             document.getElementById("previewAddress").innerHTML = areaV[areaS] + addV;
-            document.getElementById("previewSelect").innerHTML = genre1[genreV];
-            document.getElementById("previewGenre").innerHTML = genre2[genreV];
-            document.getElementById("infoinner").innerHTML = innerV[genreV];
             document.getElementById("previewCompany").innerHTML = compV;
             document.getElementById("previewHuman").innerHTML = humanV;
             document.getElementById("previewTel").innerHTML = teleV;
@@ -595,10 +614,16 @@
             }
 
             //カスタム
-            if (genreV == 5) {
+            if (document.form.genreCS.value == 1) {
+                document.getElementById("previewSelect").innerHTML = document.form.customGenre.value;
+                document.getElementById("previewGenre").innerHTML = document.form.customGenre2.value;
+                document.getElementById("infoinner").innerHTML = document.form.customInfo.value;
                 document.getElementById("customs").style.display = "block";
                 document.getElementById("forms").style.position = "static";
             } else {
+                document.getElementById("previewSelect").innerHTML = genre1[genreV];
+                document.getElementById("previewGenre").innerHTML = genre2[genreV];
+                document.getElementById("infoinner").innerHTML = innerV[genreV];
                 document.getElementById("customs").style.display = "none";
                 document.getElementById("forms").style.position = "sticky";
             }
