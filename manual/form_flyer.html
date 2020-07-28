@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
 </head>
 
-<body>
+<body oncontextmenu="return false;">
     <main>
         <header class="hidden">
             <p id="title"><a href="" id="top"><i class="material-icons-sharp">question_answer</i>「広報チラシ」作成フォーム
@@ -37,14 +37,22 @@
                                         <option value="5">カスタム</option>
                                     </select></td>
                             </tr>
+                        </table>
+                        <table id="customs">
                             <tr>
                                 <th></th>
-                                <td id="customGenres"><input type="text" name="customGenre" size="17" value="！工事内容入力！" onChange="changes()"></td>
+                                <td id="customGenres">：<input type="text" name="customGenre" size="17" value="" onChange="changes()"></td>
                             </tr>
                             <tr>
-                                <th></th>
-                                <td id="customInfos"><textarea name="customInfo" cols="19" rows="25" onChange="changes()">！説明内容入力！<br><br>文章は改行せず続けて入力<br>改行を挿入したい場合には＜ｂｒ＞を「半角英数字」で改行場所に入力<br><br>右側の印刷プレビューと比較してみて下さい<br><br>　行頭を作る場合には全角でスペースを入力します<br>↑(全角スペース)</textarea></td>
+                                <th>説明</th>
+                                <td id="customInfos"><textarea name="customInfo" cols="19" rows="25" onChange="changes()">文章は改行せず続けて入力<br>改行を挿入したい場合には＜ｂｒ＞を「<font color="red">半角英数字</font>」で改行場所に入力<br><br>左側の入力欄と右側の印刷プレビューを比較しながら入力して下さい<br><br>　行頭を作る場合には「<font color="red">全角</font>」でスペースを入力します<br>↑(全角スペース)</textarea></td>
                             </tr>
+                            <tr>
+                                <th>地図範囲</th>
+                                <td id="customMapSizes">：<input name="customMapSize" size="17" value="" onChange="changes()"></td>
+                            </tr>
+                        </table>
+                        <table>
                             <tr>
                                 <th>エリア</th>
                                 <td>：<select name="area" onChange="changes()">
@@ -206,7 +214,7 @@
                         <table>
                             <tr>
                                 <th></th>
-                                <td id="annai">：<input type="text" name="customAnnai" size="17" value="！注釈入力！" onChange="changes()"></td>
+                                <td id="annai">：<input type="text" name="customAnnai" size="17" value="" onChange="changes()"></td>
                             </tr>
                             <tr>
                                 <th>施工業者</th>
@@ -318,9 +326,10 @@
                 <div id="previewWindow">
                     <div id="printout">
                         <div id="info">
+                            <div id="logogo"><img class="logos" src="../image/08-000-06.jpg"></div>
                             <p id="attention">地域住民の皆様へ</p>
                             <span id="previewSelect">給水管漏水修繕工事のお知らせ</span>
-                            <p id="infoinner">　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管修繕工事を下記の日程により実施いたします。<br><br>　住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。</p>
+                            <p id="infoinner">　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管修繕工事を下記の日程により実施いたします。<br>　住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。</p>
                         </div>
                         <div id="addData">
                             <div id="addDataIn">
@@ -367,7 +376,6 @@
                                     </tr>
                                 </table>
                             </div>
-                            <div><img class="logos" src="../image/08-000-06.jpg"></div>
                         </div>
                         <div id="centerData">
                             <div id="centerDataIn">
@@ -414,33 +422,72 @@
         document.getElementById("viewTime").innerHTML = getNow();
 
         function check() {
+            var notP = "on";
             if (document.form.address.value == "") {
-                alert("「番地」を入力して下さい！");
-                var alV = 1;
+                var a1 = "「番地」";
+                var notP = "not";
             } else {
-                var alV = 0;
+                var a1 = "";
             }
             if (document.form.company.value == "") {
-                alert("「施工業者」を入力して下さい！");
-                var alV = 1;
+                var a2 = "「施工業者」";
+                var notP = "not";
             } else {
-                var alV = 0;
+                var a2 = "";
             }
             if (document.form.human.value == "") {
-                alert("「現場担当者」を入力して下さい！");
-                var alV = 1;
+                var a3 = "「現場担当者」";
+                var notP = "not";
             } else {
-                var alV = 0;
+                var a3 = "";
             }
             if (document.form.telephone.value == "") {
-                alert("「電話番号」を入力して下さい！");
-                var alV = 1;
+                var a4 = "「電話番号」";
+                var notP = "not";
             } else {
-                var alV = 0;
+                var a4 = "";
             }
-            const setV = alV;
-            if (setV == 0) {
+            if (document.form.annaiOn.value == 1) {
+                if (document.form.customAnnai.value == "") {
+                    var a5 = "「注釈」";
+                    var notP = "not";
+                } else {
+                    var a5 = "";
+                }
+            } else {
+                var a5 = "";
+            }
+            if (document.form.genre.value == 5) {
+                if (document.form.customGenre.value == "") {
+                    var a6 = "「工事内容」";
+                    var notP = "not";
+                } else {
+                    var a6 = "";
+                }
+                if (document.form.customMapSize.value == "") {
+                    var a7 = "「地図範囲」";
+                    var notP = "not";
+                } else {
+                    var a7 = "";
+                }
+            } else {
+                var a6 = "";
+                var a7 = "";
+            }
+            if (document.form.area.value == 6) {
+                if (document.form.customArea.value == "") {
+                    var a8 = "「エリア」";
+                    var notP = "not";
+                } else {
+                    var a8 = "";
+                }
+            }
+            if (notP == "on") {
                 window.print();
+            } else {
+                if (notP == "not") {
+                    alert(a6 + a7 + a8 + a1 + a5 + a2 + a3 + a4 + "を入力して下さい！");
+                }
             }
         }
 
@@ -463,12 +510,16 @@
         }
 
         function changes() {
+            const cms = document.form.customMapSize.value + "px";
             const genreV = document.form.genre.value;
             const areaS = document.form.area.value;
             const genre1 = ["給水管漏水修繕工事のお知らせ", "給水管漏水修繕工事（断水）のお知らせ", "給水管漏水修繕工事（迂回）のお知らせ", "給水管漏水修繕工事（通行制限）のお知らせ", "工事に伴う節水のお知らせ（お願い）", document.form.customGenre.value];
             const genre2 = ["給水管漏水修繕工事", "給水管漏水修繕工事（断水）", "給水管漏水修繕工事（迂回）", "給水管漏水修繕工事（通行制限）", "給水管漏水修繕工事", document.form.customGenre.value];
             const areaV = ["仙台市青葉区", "仙台市泉区", "仙台市宮城野区", "仙台市若林区", "仙台市太白区", "富谷市", document.form.customArea.value];
-            const innerV = ["　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管修繕工事を下記の日程により実施いたします。<br><br>　住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、下記の日程におきまして給水管修繕工事のため「断水」とさせて頂きます。<br>　住民の皆様には、ご不便とご迷惑をお掛け致しますが、水の汲み置きなどのご協力をお願い致します。<br>　断水終了後にお水をご使用になる際は、蛇口を徐々に開け濁り水が出ないかご確認のうえ使用されますようお願い致します。また、蛇口から空気が出る場合は数分程度お水を流して頂ければご使用頂けます。<br><br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "！迂回案内！", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>　なお、工事箇所は車道幅員減少及び片側通行となりますが誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br><br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>　こちらの建物にお住いの方は節水にご協力をお願い致します。受水槽からの給水となっておりますので、直ちに断水とはなりませんが、通常の使用をされますと受水槽の中に確保された水が不足し、建物全体が断水する恐れがありますので、下記時間中の節水と事前の汲み置きをお願い致します。<br><br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。"]
+            const innerV = ["　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管修繕工事を下記の日程により実施いたします。<br>　住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、下記の日程におきまして給水管修繕工事のため「断水」とさせて頂きます。<br>　住民の皆様には、ご不便とご迷惑をお掛け致しますが、水の汲み置きなどのご協力をお願い致します。<br>　断水終了後にお水をご使用になる際は、蛇口を徐々に開け濁り水が出ないかご確認のうえ使用されますようお願い致します。また、蛇口から空気が出る場合は数分程度お水を流して頂ければご使用頂けます。<br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>　なお、迂回のご協力をお願い致しますが、敷鉄板を用いて車の通行は可能です。誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>　なお、工事箇所は車道幅員減少及び片側通行となりますが誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>　こちらの建物にお住いの方は節水にご協力をお願い致します。受水槽からの給水となっておりますので、直ちに断水とはなりませんが、通常の使用をされますと受水槽の中に確保された水が不足し、建物全体が断水する恐れがありますので、下記時間中の節水と事前の汲み置きをお願い致します。<br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", document.form.customInfo.value];
+            const mapS = ["635px", "455px", "525px", "565px", "490px", cms];
+            const mapSS = ["595px", "415px", "485px", "520px", "450px", cms];
+            const logoV = ["150px", "90px", "90px", "60px", "110px", "8px"]
             const addV = document.form.address.value;
             const infoV = document.form.customInfo.value;
             const monthV = document.form.month.value;
@@ -487,11 +538,13 @@
             const annaiV = document.form.customAnnai.value;
             const stopOn = document.form.stop.value;
             const anOnV = document.form.annaiOn.value;
-            const weeks = ["(日)", "(月)", "(火)", "(水)", "(木)", "(金)", "(土)"]
+            const weeks = ["(日)", "(月)", "(火)", "(水)", "(木)", "(金)", "(土)"];
             const iYear = new Date().getFullYear();
             const iMonth = document.form.month.value;
             const iDay = document.form.day.value;
             const user = new Date(iYear, iMonth - 1, iDay);
+            document.getElementById("logogo").style.right = logoV[genreV];
+            document.getElementById("maps").style.height = mapS[genreV];
             document.getElementById("customExtra").innerHTML = annaiV;
             document.getElementById("uDate").innerHTML = weeks[user.getDay()];
             document.getElementById("previewAddress").innerHTML = areaV[areaS] + addV;
@@ -505,6 +558,18 @@
             document.getElementById("previewStartEnd").innerHTML = startH + ":" + startM + "～" + endH + ":" + endM + " 頃まで";
             document.getElementById("previewStopSE").innerHTML = stopHs + ":" + stopMs + "～" + stopHe + ":" + stopMe + " 頃まで";
 
+            //カスタム
+            if (genreV == 5) {
+                document.getElementById("customs").style.display = "block";
+            } else {                
+                document.getElementById("customs").style.display = "none";
+            }
+            if (areaS == 6) {
+                document.getElementById("customAreas").style.display = "block";
+            } else {                
+                document.getElementById("customAreas").style.display = "none";
+            }
+
             //赤黒
             if (document.form.redBlack.value == 1) {
                 document.getElementById("extra3").style.color = "black";
@@ -517,6 +582,7 @@
                 document.getElementById("annai").style.display = "block";
                 document.getElementById("extra3").style.display = "block";
                 document.getElementById("textColors").style.display = "block"
+                document.getElementById("maps").style.height = mapSS[genreV];
             } else {
                 document.getElementById("annai").style.display = "none";
                 document.getElementById("extra3").style.display = "none";
@@ -551,47 +617,6 @@
         }
 
     </script>
-
-    <!--if (document.form.genre.value == 1 && document.form.stop.value == 0) {
-                document.form.stop.value = 1;
-                document.getElementById("stopOn").style.display = "block";
-                document.getElementById("stopView").style.display = "block";
-                document.getElementById("extra").style.display = "none";
-            } else {
-                if (document.form.genre.value != 5) {
-                    document.form.stop.value = 0;
-                    document.getElementById("stopOn").style.display = "none";
-                    document.getElementById("stopView").style.display = "none";
-                    document.getElementById("extra").style.display = "block";
-                    document.getElementById("dansui").style.display = "none";
-                }
-            }
-            if (document.form.genre.value == 5) {
-                document.getElementById("customGenres").style.display = "block";
-                document.getElementById("customInfos").style.display = "block";
-                document.getElementById("dansui").style.display = "block";
-                document.getElementById("infoinner").innerHTML = infoV;
-
-                if (document.form.stop.value == 1) {
-                    document.getElementById("stopOn").style.display = "block";
-                    document.getElementById("stopView").style.display = "block";
-                    document.getElementById("extra").style.display = "none";
-                } else {
-                    document.form.stop.value = 0;
-                    document.getElementById("stopOn").style.display = "none";
-                    document.getElementById("stopView").style.display = "none";
-                    document.getElementById("extra").style.display = "block";
-                }
-            } else {
-                document.getElementById("customGenres").style.display = "none";
-                document.getElementById("customInfos").style.display = "none";
-            }
-            if (document.form.area.value == 6) {
-                document.getElementById("customAreas").style.display = "block";
-            } else {
-                document.getElementById("customAreas").style.display = "none";
-            }-->
-
 </body>
 
 </html>
