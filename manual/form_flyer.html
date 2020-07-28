@@ -212,34 +212,6 @@
                                 </td>
                             </tr>
                         </table>
-                        <table>
-                            <tr>
-                                <th></th>
-                                <td id="annai">：<input type="text" name="customAnnai" size="17" value="" onChange="changes()"></td>
-                            </tr>
-                            <tr>
-                                <th>施工業者</th>
-                                <td>：<input type="text" name="company" size="17" onChange="changes()"></td>
-                            </tr>
-                            <tr>
-                                <th>現場担当</th>
-                                <td>：<input type="text" name="human" size="17" onChange="changes()"></td>
-                            </tr>
-                            <tr>
-                                <th>電話番号</th>
-                                <td>：<input type="text" name="telephone" size="17" onChange="changes()"></td>
-                            </tr>
-                        </table>
-                        <table id="dansui">
-                            <tr>
-                                <th>断水有無</th>
-                                <td>：<select name="stop" onChange="changes()">
-                                        <option value="0">無</option>
-                                        <option value="1">有</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
                         <table id="stopOn">
                             <tr>
                                 <th>断水開始</th>
@@ -315,6 +287,34 @@
                         </table>
                         <table>
                             <tr>
+                                <th></th>
+                                <td id="annai">：<input type="text" name="customAnnai" size="17" value="" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>施工業者</th>
+                                <td>：<input type="text" name="company" size="17" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>現場担当</th>
+                                <td>：<input type="text" name="human" size="17" onChange="changes()"></td>
+                            </tr>
+                            <tr>
+                                <th>電話番号</th>
+                                <td>：<input type="text" name="telephone" size="17" onChange="changes()"></td>
+                            </tr>
+                        </table>
+                        <table id="dansui">
+                            <tr>
+                                <th>断水有無</th>
+                                <td>：<select name="stop" onChange="changes()">
+                                        <option value="0">無</option>
+                                        <option value="1">有</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
                                 <th>キャラ画</th>
                                 <td>：<select name="chars" onChange="changes()">
                                         <option value="0" selected="selected">両方有</option>
@@ -325,9 +325,8 @@
                             </tr>
                         </table>
                         <div>
-                            <a href="../index.html"><input type="button" value="戻る"></a>
-                            <input type="button" value="反映">
-                            <input type="button" value="印刷" onClick="check()">
+                            <input type="button" class="accept" value="入力内容を反映">
+                            <input type="button" class="accept" value="印刷" onClick="check()">
                         </div>
                     </form>
                 </div>
