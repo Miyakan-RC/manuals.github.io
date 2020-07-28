@@ -63,7 +63,7 @@ footer {
     text-align: left;
     padding: 4px;
     top: 54px;
-    position: sticky;
+    /*position: sticky;*/
 }
 
 #viewTime {
