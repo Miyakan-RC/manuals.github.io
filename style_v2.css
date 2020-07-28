@@ -81,6 +81,13 @@ footer {
     margin: 0;
 }
 
+.accept {
+    width: 100%;
+    font-size: large;
+    margin-top: 8px;
+    font-weight: bold;
+}
+
 /*
 印刷プレビュー
 */
