@@ -113,6 +113,20 @@ footer {
 #info {
     text-align: center;
     margin-bottom: 20px;
+    position: relative;
+}
+
+#logogo {
+    width: 100px;
+    height: 109px;
+    top: 8px;
+    right: 150px;
+    position: absolute;
+}
+
+.logos {
+    font-size: 0;
+    display: inline-block;
 }
 
 #attention {
@@ -151,11 +165,6 @@ footer {
 
 }
 
-.logos {
-    font-size: 0;
-    display: inline-block;
-}
-
 #centerData {
     font-size: 0;
     margin-right: 20px;
@@ -168,7 +177,7 @@ footer {
 
 #maps {
     width: 1006px;
-    height: 380px;
+    height: 600px;
     margin: 0 auto;
     position: relative;
     overflow: hidden;
@@ -210,9 +219,10 @@ a {
 #centerData2,
 #centerData3,
 #centerData th,
-#customInfos,
 #customAreas,
-#customGenres {
+#customInfos,
+#customGenres,
+#customMapSizes {
     text-align: right;
 }
 
@@ -242,11 +252,10 @@ a {
 非表示
 */
 
-#customGenres,
+#customs,
 #customAreas,
 #stopOn,
 #stopView,
-#customInfos,
 #dansui,
 #annai,
 #extra3, 
