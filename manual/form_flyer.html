@@ -203,11 +203,12 @@
                                     </select>
                                 </td>
                             </tr>
-                        </table>
-                        <table id="textColors">
                             <tr>
-                                <th>文字色　</th>
-                                <td>：赤<input type="radio" name="redBlack" value="0" checked="checked" onChange="changes()">　黒<input type="radio" name="redBlack" value="1" onChange="changes()">
+                                <th></th>
+                                <td id="textColors">：※<select name="come" onChange="changes()">
+                                        <option value="0" selected="selected">有</option>
+                                        <option value="1">無</option>
+                                    </select>　赤<input type="radio" name="redBlack" value="0" checked="checked" onChange="changes()">　黒<input type="radio" name="redBlack" value="1" onChange="changes()">
                                 </td>
                             </tr>
                         </table>
@@ -309,8 +310,18 @@
                                         <option value="15">15</option>
                                         <option value="30">30</option>
                                         <option value="45">45</option>
-                                    </select>
-                                </td>
+                                    </select></td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <th>キャラ画</th>
+                                <td>：<select name="chars" onChange="changes()">
+                                        <option value="0" selected="selected">両方有</option>
+                                        <option value="1">両方無</option>
+                                        <option value="2">上のみ</option>
+                                        <option value="3">下のみ</option>
+                                    </select></td>
                             </tr>
                         </table>
                         <div>
@@ -326,10 +337,10 @@
                 <div id="previewWindow">
                     <div id="printout">
                         <div id="info">
-                            <div id="logogo"><img class="logos" src="../image/08-000-06.jpg"></div>
+                            <div id="logogo"><img class="logos" src="../image/logo2.png" width="110px" height="110px"></div>
                             <p id="attention">地域住民の皆様へ</p>
                             <span id="previewSelect">給水管漏水修繕工事のお知らせ</span>
-                            <p id="infoinner">　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管修繕工事を下記の日程により実施いたします。<br>　住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。</p>
+                            <p id="infoinner">地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管修繕工事を下記の日程により実施いたします。<br>住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。</p>
                         </div>
                         <div id="addData">
                             <div id="addDataIn">
@@ -344,7 +355,7 @@
                                     </tr>
                                     <tr>
                                         <th>工事日時</th>
-                                        <td>：<span id="previewTime">令和00年00月00日 (曜)</span></td>
+                                        <td>：<span id="previewTime">令和02年01月01日 (曜)</span></td>
                                     </tr>
                                     <tr>
                                         <th>作業予定時間</th>
@@ -357,6 +368,12 @@
                                         <td>：<span id="previewStopSE"></span></td>
                                     </tr>
                                 </table>
+                                <table id="extra3">
+                                    <tr>
+                                        <th><span id="customCome">※</span></th>
+                                        <td><span id="customExtra"></span></td>
+                                    </tr>
+                                </table>
                                 <table id="extra">
                                     <tr>
                                         <th>※</th>
@@ -367,12 +384,6 @@
                                     <tr>
                                         <th>※</th>
                                         <td>天候不順等で延期の場合があることを申し添えます。</td>
-                                    </tr>
-                                </table>
-                                <table id="extra3">
-                                    <tr>
-                                        <th>※</th>
-                                        <td><span id="customExtra"></span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -393,15 +404,16 @@
                                         <td class="ll">：<span id="previewCompany"></span></td>
                                     </tr>
                                     <tr>
-                                        <th></th>
-                                        <td id="centerData3"><span id="previewTel"></span></td>
-                                    </tr>
-                                    <tr>
                                         <th>現場担当者</th>
                                         <td class="ll">：<span id="previewHuman"></span></td>
                                     </tr>
+                                    <tr>
+                                        <th>電話番号</th>
+                                        <td class="ll">：<span id="previewTel"></span></td>
+                                    </tr>
                                 </table>
                             </div>
+                            <div id="logogo2"><img class="logos" src="../image/logo.jpg"></div>
                         </div>
                         <div id="maps">
                             <iframe id="ymap" src="https://100map.net/y/"></iframe>
@@ -481,6 +493,8 @@
                 } else {
                     var a8 = "";
                 }
+            } else {
+                var a8 = "";
             }
             if (notP == "on") {
                 window.print();
@@ -516,9 +530,10 @@
             const genre1 = ["給水管漏水修繕工事のお知らせ", "給水管漏水修繕工事（断水）のお知らせ", "給水管漏水修繕工事（迂回）のお知らせ", "給水管漏水修繕工事（通行制限）のお知らせ", "工事に伴う節水のお知らせ（お願い）", document.form.customGenre.value];
             const genre2 = ["給水管漏水修繕工事", "給水管漏水修繕工事（断水）", "給水管漏水修繕工事（迂回）", "給水管漏水修繕工事（通行制限）", "給水管漏水修繕工事", document.form.customGenre.value];
             const areaV = ["仙台市青葉区", "仙台市泉区", "仙台市宮城野区", "仙台市若林区", "仙台市太白区", "富谷市", document.form.customArea.value];
-            const innerV = ["　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管修繕工事を下記の日程により実施いたします。<br>　住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、下記の日程におきまして給水管修繕工事のため「断水」とさせて頂きます。<br>　住民の皆様には、ご不便とご迷惑をお掛け致しますが、水の汲み置きなどのご協力をお願い致します。<br>　断水終了後にお水をご使用になる際は、蛇口を徐々に開け濁り水が出ないかご確認のうえ使用されますようお願い致します。また、蛇口から空気が出る場合は数分程度お水を流して頂ければご使用頂けます。<br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>　なお、迂回のご協力をお願い致しますが、敷鉄板を用いて車の通行は可能です。誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>　なお、工事箇所は車道幅員減少及び片側通行となりますが誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "　地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>　このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>　こちらの建物にお住いの方は節水にご協力をお願い致します。受水槽からの給水となっておりますので、直ちに断水とはなりませんが、通常の使用をされますと受水槽の中に確保された水が不足し、建物全体が断水する恐れがありますので、下記時間中の節水と事前の汲み置きをお願い致します。<br>　住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", document.form.customInfo.value];
+            const innerV = ["地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管修繕工事を下記の日程により実施いたします。<br>住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、下記の日程におきまして給水管修繕工事のため「断水」とさせて頂きます。<br>住民の皆様には、ご不便とご迷惑をお掛け致しますが、水の汲み置きなどのご協力をお願い致します。<br>断水終了後にお水をご使用になる際は、蛇口を徐々に開け濁り水が出ないかご確認のうえ使用されますようお願い致します。また、蛇口から空気が出る場合は数分程度お水を流して頂ければご使用頂けます。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>なお、迂回のご協力をお願い致しますが、敷鉄板を用いて車の通行は可能です。誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>なお、工事箇所は車道幅員減少及び片側通行となりますが誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。<br>このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>こちらの建物にお住いの方は節水にご協力をお願い致します。受水槽からの給水となっておりますので、直ちに断水とはなりませんが、通常の使用をされますと受水槽の中に確保された水が不足し、建物全体が断水する恐れがありますので、下記時間中の節水と事前の汲み置きをお願い致します。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", document.form.customInfo.value];
             const mapS = ["635px", "455px", "525px", "565px", "490px", cms];
             const mapSS = ["595px", "415px", "485px", "520px", "450px", cms];
+            const mapSSS = ["645px", "465px", "535px", "575px", "500px", cms + 10]
             const logoV = ["150px", "90px", "90px", "60px", "110px", "8px"]
             const addV = document.form.address.value;
             const infoV = document.form.customInfo.value;
@@ -538,6 +553,7 @@
             const annaiV = document.form.customAnnai.value;
             const stopOn = document.form.stop.value;
             const anOnV = document.form.annaiOn.value;
+            const carV = document.form.chars.value;
             const weeks = ["(日)", "(月)", "(火)", "(水)", "(木)", "(金)", "(土)"];
             const iYear = new Date().getFullYear();
             const iMonth = document.form.month.value;
@@ -545,6 +561,7 @@
             const user = new Date(iYear, iMonth - 1, iDay);
             document.getElementById("logogo").style.right = logoV[genreV];
             document.getElementById("maps").style.height = mapS[genreV];
+            document.getElementById("ymap").style.height = mapSSS[genreV];
             document.getElementById("customExtra").innerHTML = annaiV;
             document.getElementById("uDate").innerHTML = weeks[user.getDay()];
             document.getElementById("previewAddress").innerHTML = areaV[areaS] + addV;
@@ -558,15 +575,33 @@
             document.getElementById("previewStartEnd").innerHTML = startH + ":" + startM + "～" + endH + ":" + endM + " 頃まで";
             document.getElementById("previewStopSE").innerHTML = stopHs + ":" + stopMs + "～" + stopHe + ":" + stopMe + " 頃まで";
 
+            //キャラ画
+            if (carV == 0) {
+                document.getElementById("logogo").style.display = "block";
+                document.getElementById("logogo2").style.display = "block";
+            }
+            if (carV == 1) {
+                document.getElementById("logogo").style.display = "none";
+                document.getElementById("logogo2").style.display = "none";
+            }
+            if (carV == 2) {
+                document.getElementById("logogo").style.display = "block";
+                document.getElementById("logogo2").style.display = "none";
+            }
+            if (carV == 3) {
+                document.getElementById("logogo2").style.display = "block";
+                document.getElementById("logogo").style.display = "none";
+            }
+
             //カスタム
             if (genreV == 5) {
                 document.getElementById("customs").style.display = "block";
-            } else {                
+            } else {
                 document.getElementById("customs").style.display = "none";
             }
             if (areaS == 6) {
                 document.getElementById("customAreas").style.display = "block";
-            } else {                
+            } else {
                 document.getElementById("customAreas").style.display = "none";
             }
 
@@ -575,6 +610,11 @@
                 document.getElementById("extra3").style.color = "black";
             } else {
                 document.getElementById("extra3").style.color = "red";
+            }
+            if (document.form.come.value == 0) {
+                document.getElementById("customCome").style.display = "block";
+            } else {
+                document.getElementById("customCome").style.display = "none";
             }
 
             //注釈分岐
