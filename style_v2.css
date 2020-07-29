@@ -129,7 +129,7 @@ footer {
     width: 100px;
     height: 100px;
     top: 8px;
-    right: 150px;
+    right: 80px;
     position: absolute;
 }
 
@@ -243,7 +243,6 @@ a {
 #centerData,
 #centerData2,
 #centerData3,
-#centerData th,
 #customAreas,
 #customInfos,
 #customGenres,
@@ -251,8 +250,10 @@ a {
     text-align: right;
 }
 
+#centerData th,
 #addData th {
     text-align: left;
+
 }
 
 #title,
@@ -283,7 +284,7 @@ a {
 #stopView,
 #dansui,
 #annai,
-#extra3, 
+#extra3,
 #textColors {
     display: none;
 }
