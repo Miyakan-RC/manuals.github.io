@@ -482,23 +482,6 @@
             } else {
                 var a5 = "";
             }
-            if (document.form.genre.value == 5) {
-                if (document.form.customGenre.value == "") {
-                    var a6 = "「工事内容」";
-                    var notP = "not";
-                } else {
-                    var a6 = "";
-                }
-                if (document.form.customMapSize.value == "") {
-                    var a7 = "「地図範囲」";
-                    var notP = "not";
-                } else {
-                    var a7 = "";
-                }
-            } else {
-                var a6 = "";
-                var a7 = "";
-            }
             if (document.form.area.value == 6) {
                 if (document.form.customArea.value == "") {
                     var a8 = "「エリア」";
@@ -629,6 +612,7 @@
                 document.getElementById("infoinner").innerHTML = document.form.customInfo.value;
                 document.getElementById("customs").style.display = "block";
                 document.getElementById("forms").style.position = "static";
+                document.getElementById("maps").style.height = cms;
             } else {
                 document.getElementById("previewSelect").innerHTML = genre1[genreV];
                 document.getElementById("previewGenre").innerHTML = genre2[genreV];
