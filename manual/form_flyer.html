@@ -283,7 +283,23 @@
                         </table>
                         <table>
                             <tr>
-                                <th>注釈追加</th>
+                                <th>注釈1</th>
+                                <td>：<select name="tyushaku1" onChange="changes()">
+                                        <option value="0">無</option>
+                                        <option value="1">有</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>注釈2</th>
+                                <td>：<select name="tyushaku2" onChange="changes()">
+                                        <option value="0">無</option>
+                                        <option value="1">有</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>注釈3</th>
                                 <td>：<select name="annaiOn" onChange="changes()">
                                         <option value="0">無</option>
                                         <option value="1">有</option>
@@ -674,6 +690,11 @@
                     document.getElementById("stopView").style.display = "none";
                     document.getElementById("extra").style.display = "block";
                 }
+            }
+            if (document.form.tyusaku.value == 1) {
+                document.getElementByID("extra").style.display = "none";
+            } else {
+                document.getElementByID("extra").style.display = "block";
             }
         }
 
