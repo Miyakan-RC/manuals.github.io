@@ -23,7 +23,6 @@
             <div id="sidebar" class="hidden">
                 <div id="forms">
                     <p id="viewTime"></p>
-                    <p id="comment">[20200728]　内海<br>一通りの様式が完成しました、修正点などございましたらご指摘頂けると幸いです。<br><br>基本的には上から順番に選択・入力していくと印刷することができます。<br><br>なお、仕様上カスタム入力欄では「Enter」による改行は使用することができませんので、改行したい場所に「&lt;br&gt;」を挿入して下さい。<br>その他「&lt;b&gt;<b>文字列</b>&lt;/b&gt;」で囲うことで<b>太字</b>や「&lt;font color="red"&gt;<font color="red">文字列</font>&lt;/font&gt;」<font color="blue">色を付ける</font>ことができるなど、タグの使用が可能です。</p>
                     <form name="form" autocomplete="off">
                         <table id="genres">
                             <tr>
@@ -36,11 +35,9 @@
                                         <option value="4">節水のお知らせ</option>
                                     </select></td>
                             </tr>
-                        </table>
-                        <table id="cGenres">
                             <tr>
-                                <th>カスタム</th>
-                                <td>：<select name="genreCS" onChange="changes()">
+                                <th></th>
+                                <td>└<b>カスタム</b>：<select name="genreCS" onChange="changes()">
                                         <option value="0">無</option>
                                         <option value="1">有</option>
                                     </select></td>
@@ -135,9 +132,18 @@
                                     </select>日
                                     <span id="uDate"></span>
                                 </td>
+                            </tr>
                             <tr>
-                                <th>作業開始</th>
-                                <td>：<select name="startHour" onChange="changes()">
+                                <th>作業時間</th>
+                                <td>：<select name="sagyouTime" onChange="changes()">
+                                        <option value="0">有</option>
+                                        <option value="1">無</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td id="sagyouStart">├<b>開始</b>：<select name="startHour" onChange="changes()">
                                         <option value="00">00</option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
@@ -172,8 +178,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>作業終了</th>
-                                <td>：<select name="endHour" onChange="changes()">
+                                <th></th>
+                                <td id="sagyouOwari">└<b>終了</b>：<select name="endHour" onChange="changes()">
                                         <option value="00">00</option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
@@ -208,10 +214,18 @@
                                 </td>
                             </tr>
                         </table>
-                        <table id="stopOn">
+                        <table id="dansuiOn">
                             <tr>
-                                <th>断水開始</th>
-                                <td>：<select name="stopHourStart" onChange="changes()">
+                                <th>断水時間</th>
+                                <td>：<select name="dansuiTime" onChange="changes()">
+                                        <option value="0">有</option>
+                                        <option value="1">無</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td id="dansuiStart">├<b>開始</b>：<select name="stopHourStart" onChange="changes()">
                                         <option value="00">00</option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
@@ -246,8 +260,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>断水終了</th>
-                                <td>：<select name="stopHourEnd" onChange="changes()">
+                                <th></th>
+                                <td id="dansuiOwari">└<b>終了</b>：<select name="stopHourEnd" onChange="changes()">
                                         <option value="00">00</option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
@@ -281,26 +295,30 @@
                                     </select></td>
                             </tr>
                         </table>
-                        <table>
+                        <table id="extra1">
                             <tr>
-                                <th>注釈1</th>
-                                <td>：<select name="tyushaku1" onChange="changes()">
+                                <th>注(断水)</th>
+                                <td>：<select name="extra1On" onChange="changes()">
                                         <option value="0">無</option>
                                         <option value="1">有</option>
                                     </select>
                                 </td>
                             </tr>
+                        </table>
+                        <table id="extra2">
                             <tr>
-                                <th>注釈2</th>
-                                <td>：<select name="tyushaku2" onChange="changes()">
-                                        <option value="0">無</option>
-                                        <option value="1">有</option>
+                                <th>注(天候)</th>
+                                <td>：<select name="extra2On" onChange="changes()">
+                                        <option value="0">有</option>
+                                        <option value="1">無</option>
                                     </select>
                                 </td>
                             </tr>
+                        </table>
+                        <table id="extra3">
                             <tr>
-                                <th>注釈3</th>
-                                <td>：<select name="annaiOn" onChange="changes()">
+                                <th>注(追加)</th>
+                                <td>：<select name="extra3On" onChange="changes()">
                                         <option value="0">無</option>
                                         <option value="1">有</option>
                                     </select>
@@ -308,16 +326,26 @@
                             </tr>
                             <tr>
                                 <th></th>
-                                <td id="textColors">：※<select name="come" onChange="changes()">
+                                <td id="textColors1">├<b>コメ印</b>：<select name="come" onChange="changes()">
                                         <option value="0" selected="selected">有</option>
                                         <option value="1">無</option>
-                                    </select>　赤<input type="radio" name="redBlack" value="0" checked="checked" onChange="changes()">　黒<input type="radio" name="redBlack" value="1" onChange="changes()">
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
                                 <th></th>
-                                <td id="annai">：<input type="text" name="customAnnai" size="17" value="注釈" onChange="changes()"></td>
+                                <td id="textColors2">├<b>文字色</b>：<select name="redBlack" onChange="changes()">
+                                        <option value="0" selected="selected">赤</option>
+                                        <option value="1">黒</option>
+                                    </select>
+                                </td>
                             </tr>
+                            <tr>
+                                <th></th>
+                                <td id="annai">└<b>内容</b>：<input type="text" name="customAnnai" size="10" value="注釈" onChange="changes()"></td>
+                            </tr>
+                        </table>
+                        <table>
                             <tr>
                                 <th>施工業者</th>
                                 <td>：<input type="text" name="company" size="17" onChange="changes()"></td>
@@ -329,16 +357,6 @@
                             <tr>
                                 <th>電話番号</th>
                                 <td>：<input type="text" name="telephone" size="17" onChange="changes()"></td>
-                            </tr>
-                        </table>
-                        <table id="dansui">
-                            <tr>
-                                <th>断水有無</th>
-                                <td>：<select name="stop" onChange="changes()">
-                                        <option value="0">無</option>
-                                        <option value="1">有</option>
-                                    </select>
-                                </td>
                             </tr>
                         </table>
                         <table>
@@ -384,30 +402,32 @@
                                         <th>工事日時</th>
                                         <td>：<span id="previewTime">令和02年01月01日 (曜)</span></td>
                                     </tr>
+                                </table>
+                                <table id="sagyouView">
                                     <tr>
-                                        <th>作業予定時間</th>
+                                        <th>作業時間</th>
                                         <td>：<span id="previewStartEnd">09:00～17:00 頃まで</span></td>
                                     </tr>
                                 </table>
-                                <table id="stopView">
+                                <table id="dansuiView">
                                     <tr>
-                                        <th>断水予定時間</th>
+                                        <th>断水時間</th>
                                         <td>：<span id="previewStopSE"></span></td>
                                     </tr>
                                 </table>
-                                <table id="extra3">
+                                <table id="extra3View">
                                     <tr>
                                         <th><span id="customCome">※</span></th>
                                         <td><span id="customExtra"></span></td>
                                     </tr>
                                 </table>
-                                <table id="extra">
+                                <table id="extra1View">
                                     <tr>
                                         <th>※</th>
                                         <td>今回の工事で断水は行わない予定です。</td>
                                     </tr>
                                 </table>
-                                <table id="extra2">
+                                <table id="extra2View">
                                     <tr>
                                         <th>※</th>
                                         <td>天候不順等で延期の場合があることを申し添えます。</td>
@@ -450,7 +470,7 @@
                         </div>
                     </div>
                 </div>
-                <p id="console" class="hidden">↑ここまで印刷されます↑</p>
+                <p id="console2" class="hidden">↑ここまで印刷されます↑</p>
             </div>
         </div>
 
@@ -488,7 +508,7 @@
             } else {
                 var a4 = "";
             }
-            if (document.form.annaiOn.value == 1) {
+            if (document.form.extra3On.value == 1) {
                 if (document.form.customAnnai.value == "" || document.form.customAnnai.value == "注釈") {
                     var a5 = "「注釈」";
                     var notP = "not";
@@ -576,9 +596,13 @@
             const humanV = document.form.human.value;
             const teleV = document.form.telephone.value;
             const annaiV = document.form.customAnnai.value;
-            const stopOn = document.form.stop.value;
-            const anOnV = document.form.annaiOn.value;
+            const extra1OnV = document.form.extra1On.value;
+            const extra2OnV = document.form.extra2On.value;
+            const extra3OnV = document.form.extra3On.value;
             const carV = document.form.chars.value;
+            const sagyouT = document.form.sagyouTime.value;
+            const dansuiT = document.form.dansuiTime.value;
+            const customGenre = document.form.genreCS.value;
             const weeks = ["(日)", "(月)", "(火)", "(水)", "(木)", "(金)", "(土)"];
             const iYear = new Date().getFullYear();
             const iMonth = document.form.month.value;
@@ -622,19 +646,29 @@
             }
 
             //カスタム
-            if (document.form.genreCS.value == 1) {
+            if (customGenre == 1) {
+                document.getElementById("extra1").style.display = "block";
+                document.getElementById("extra2").style.display = "block";
+                document.getElementById("extra3").style.display = "block";
                 document.getElementById("previewSelect").innerHTML = document.form.customGenre.value;
                 document.getElementById("previewGenre").innerHTML = document.form.customGenre2.value;
                 document.getElementById("infoinner").innerHTML = document.form.customInfo.value;
                 document.getElementById("customs").style.display = "block";
                 document.getElementById("forms").style.position = "static";
                 document.getElementById("maps").style.height = cms;
+                document.getElementById("dansuiOn").style.display = "block";
+                document.getElementById("dansuiView").style.display = "block";
             } else {
                 document.getElementById("previewSelect").innerHTML = genre1[genreV];
                 document.getElementById("previewGenre").innerHTML = genre2[genreV];
                 document.getElementById("infoinner").innerHTML = innerV[genreV];
                 document.getElementById("customs").style.display = "none";
-                document.getElementById("forms").style.position = "sticky";
+                document.getElementById("dansuiOn").style.display = "none";
+                if (genreV == 1) {
+                    document.getElementById("dansuiView").style.display = "block";
+                } else {
+                    document.getElementById("dansuiView").style.display = "none";
+                }
             }
             if (areaS == 6) {
                 document.getElementById("customAreas").style.display = "block";
@@ -644,9 +678,9 @@
 
             //赤黒
             if (document.form.redBlack.value == 1) {
-                document.getElementById("extra3").style.color = "black";
+                document.getElementById("extra3View").style.color = "black";
             } else {
-                document.getElementById("extra3").style.color = "red";
+                document.getElementById("extra3View").style.color = "red";
             }
             if (document.form.come.value == 0) {
                 document.getElementById("customCome").style.display = "block";
@@ -655,46 +689,42 @@
             }
 
             //注釈分岐
-            if (anOnV == 1) {
+            if (extra3OnV == 1) {
                 document.getElementById("annai").style.display = "block";
-                document.getElementById("extra3").style.display = "block";
-                document.getElementById("textColors").style.display = "block"
+                if (customGenre == 1) {
+                    document.getElementById("extra3View").style.display = "block";
+                } else {
+                    document.getElementById("extra3View").style.display = "none";
+                }
+                document.getElementById("textColors1").style.display = "block"
+                document.getElementById("textColors2").style.display = "block"
                 document.getElementById("maps").style.height = mapSS[genreV];
             } else {
                 document.getElementById("annai").style.display = "none";
-                document.getElementById("extra3").style.display = "none";
-                document.getElementById("textColors").style.display = "none"
+                document.getElementById("extra3View").style.display = "none";
+                document.getElementById("textColors1").style.display = "none"
+                document.getElementById("textColors2").style.display = "none"
             }
 
-            //断水分岐
-            if (genreV == 1) {
-                document.getElementById("dansui").style.display = "none";
-                document.getElementById("stopOn").style.display = "block";
-                document.getElementById("stopView").style.display = "block";
-                document.getElementById("extra").style.display = "none";
+            //作業時間
+            if (sagyouT == 1) {
+                document.getElementById("sagyouStart").style.display = "none";
+                document.getElementById("sagyouOwari").style.display = "none";
+                document.getElementById("sagyouView").style.display = "none";
             } else {
-                if (genreV == 5) {
-                    document.getElementById("dansui").style.display = "block";
-                    if (stopOn == 1) {
-                        document.getElementById("stopOn").style.display = "block";
-                        document.getElementById("stopView").style.display = "block";
-                        document.getElementById("extra").style.display = "none";
-                    } else {
-                        document.getElementById("stopOn").style.display = "none";
-                        document.getElementById("stopView").style.display = "none";
-                        document.getElementById("extra").style.display = "block";
-                    }
-                } else {
-                    document.getElementById("dansui").style.display = "none";
-                    document.getElementById("stopOn").style.display = "none";
-                    document.getElementById("stopView").style.display = "none";
-                    document.getElementById("extra").style.display = "block";
-                }
+                document.getElementById("sagyouStart").style.display = "block";
+                document.getElementById("sagyouOwari").style.display = "block";
+                document.getElementById("sagyouView").style.display = "block";
             }
-            if (document.form.tyusaku.value == 1) {
-                document.getElementByID("extra").style.display = "none";
+
+            //断水時間
+            if (dansuiT == 1) {
+                document.getElementById("dansuiStart").style.display = "none";
+                document.getElementById("dansuiOwari").style.display = "none";
+                document.getElementById("dansuiView").style.display = "none";
             } else {
-                document.getElementByID("extra").style.display = "block";
+                document.getElementById("dansuiStart").style.display = "block";
+                document.getElementById("dansuiOwari").style.display = "block";
             }
         }
 
