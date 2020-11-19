@@ -100,7 +100,7 @@ footer {
     display: block;
 }
 
-#console,
+#console1,
 #console2 {
     text-align: center;
     padding: 0;
@@ -268,9 +268,9 @@ a {
     font-size: xx-large;
 }
 
-#extra,
-#extra2,
-#extra3 {
+#extra1View,
+#extra2View,
+#extra3View {
     color: red;
 }
 
@@ -280,12 +280,14 @@ a {
 
 #customs,
 #customAreas,
-#stopOn,
-#stopView,
-#dansui,
+#dansuiView,
+#dansuiOn,
 #annai,
+#extra1,
+#extra2,
 #extra3,
-#textColors {
+#extra3View,
+#textColors1 {
     display: none;
 }
 
