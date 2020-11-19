@@ -378,7 +378,7 @@
                 </div>
             </div>
             <div id="wrap">
-                <p id="console" class="hidden">↓ここから印刷されます↓</p>
+                <p id="console1" class="hidden">↓ここから印刷されます↓</p>
                 <div id="previewWindow">
                     <div id="printout">
                         <div id="info">
@@ -464,13 +464,13 @@
                         </div>
                         <div id="mapOn">
                             <div id="maps">
-                                <iframe id="ymap" src="https://100map.net/g/"></iframe>
+                                <iframe id="ymap" scrolling="no" src="https://www.mapion.co.jp/m2/38.20894792,140.87358857,19/poi=101009843_ipcbl"></iframe>
                                 <div id="pointer"><img src="../image/pointer.png"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <p id="console2" class="hidden">↑ここまで印刷されます↑</p>
+                <p id="console2" class="hidden">↑ここまで印刷されます↑<br>全国検索で箇所表示後「全画面＆超印刷」を選択、全画面終了は[Esc]</p>
             </div>
         </div>
 
@@ -483,57 +483,27 @@
         document.getElementById("viewTime").innerHTML = getNow();
 
         function check() {
-            var notP = "on";
-            if (document.form.address.value == "") {
-                var a1 = "「番地」";
-                var notP = "not";
-            } else {
-                var a1 = "";
+            const addV = document.form.address.value;
+            const compV = document.form.company.value;
+            const humanV = document.form.human.value;
+            const teleV = document.form.telephone.value;
+            var count = "を入力して下さい";
+            if (teleV == "") {
+                count = "「電話番号」" + count;
             }
-            if (document.form.company.value == "") {
-                var a2 = "「施工業者」";
-                var notP = "not";
-            } else {
-                var a2 = "";
+            if (humanV == "") {
+                count = "「現場担当者」" + count;
             }
-            if (document.form.human.value == "") {
-                var a3 = "「現場担当者」";
-                var notP = "not";
-            } else {
-                var a3 = "";
+            if (compV == "") {
+                count = "「施工業者」" + count;
             }
-            if (document.form.telephone.value == "") {
-                var a4 = "「電話番号」";
-                var notP = "not";
-            } else {
-                var a4 = "";
+            if (addV == "") {
+                count = "「番地」" + count;
             }
-            if (document.form.extra3On.value == 1) {
-                if (document.form.customAnnai.value == "" || document.form.customAnnai.value == "注釈") {
-                    var a5 = "「注釈」";
-                    var notP = "not";
-                } else {
-                    var a5 = "";
-                }
-            } else {
-                var a5 = "";
-            }
-            if (document.form.area.value == 6) {
-                if (document.form.customArea.value == "") {
-                    var a8 = "「エリア」";
-                    var notP = "not";
-                } else {
-                    var a8 = "";
-                }
-            } else {
-                var a8 = "";
-            }
-            if (notP == "on") {
+            if (count == "を入力して下さい") {
                 window.print();
             } else {
-                if (notP == "not") {
-                    alert(a6 + a7 + a8 + a1 + a5 + a2 + a3 + a4 + "を入力して下さい！");
-                }
+                alert(count);
             }
         }
 
@@ -578,7 +548,7 @@
             const innerV = ["地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。このたび、給水管修繕工事を下記の日程により実施いたします。<br>住民の皆様には大変ご迷惑をお掛けいたしますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。このたび、下記の日程において給水管修繕工事のため「断水」とさせて頂きます。<br>住民の皆様には、ご不便とご迷惑をお掛け致しますが、水の汲み置きなどのご協力をお願い致します。<br>断水終了後にお水をご使用になる際は、蛇口を徐々に開け濁り水が出ないかご確認のうえ使用されますようお願い致します。また、蛇口から空気が出る場合は数分程度お水を流して頂ければご使用頂けます。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>なお、迂回のご協力をお願い致しますが、敷鉄板を用いて車の通行は可能ですので、その際はお声がけをお願い致します。また、通行には支障が無いように誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>なお、工事箇所は車道幅員減少及び片側通行となりますが、通行には支障が無いように誘導員を配置し、看板でのお知らせを行いますので、誘導員に従って通行してくださいますようお願い致します。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。", "地域住民の皆様には、日頃より水道事業の運営に対しご理解とご協力を頂き厚くお礼申し上げます。このたび、給水管漏水修繕工事を下記の日程により実施いたします。<br>こちらの建物にお住いの方は節水にご協力をお願い致します。受水槽からの給水となっておりますので、直ちに断水とはなりませんが、通常の使用をされますと受水槽の中に確保された水が不足し、建物全体が断水する恐れがありますので、下記時間中の節水と事前の汲み置きをお願い致します。<br>住民の皆様には大変ご迷惑をお掛け致しますが、騒音、振動、安全等には十分注意し、早期終了に努力してまいりますので、重ねてご理解とご協力のほどお願い致します。"];
             const mapS = ["670px", "490px", "565px", "565px", "530px"];
             const mapSS = ["630px", "450px", "525px", "525px", "490px"];
-            const mapSSS = ["680px", "500px", "575px", "575px", "540px"];
+            //* const mapSSS = ["680px", "500px", "575px", "575px", "540px"]; *//
             const logoV = ["80px", "20px", "20px", "20px", "100px"];
             const addV = document.form.address.value;
             const infoV = document.form.customInfo.value;
@@ -610,7 +580,7 @@
             const user = new Date(iYear, iMonth - 1, iDay);
             document.getElementById("logogo").style.right = logoV[genreV];
             document.getElementById("maps").style.height = mapS[genreV];
-            document.getElementById("ymap").style.height = mapSSS[genreV];
+            //* document.getElementById("ymap").style.height = mapSSS[genreV]; *//
             document.getElementById("customExtra").innerHTML = annaiV;
             document.getElementById("uDate").innerHTML = weeks[user.getDay()];
             document.getElementById("previewAddress").innerHTML = areaV[areaS] + addV;
@@ -692,14 +662,26 @@
             }
 
             //注釈分岐
-            if (extra1OnV == 1) {
-                if (customGenre == 1) {
-                    document.getElementById("extra1View").style.display = "none";
+            if (extra1OnV == 0) {
+                if (genreV == 1) {
+                    if (customGenre == 1) {
+                        document.getElementById("extra1View").style.display = "block";
+                    } else {
+                        document.getElementById("extra1View").style.display = "none";
+                    }
                 } else {
                     document.getElementById("extra1View").style.display = "block";
                 }
             } else {
-                document.getElementById("extra1View").style.display = "block";
+                if (genreV != 1) {
+                    if (customGenre == 1) {
+                        document.getElementById("extra1View").style.display = "none";
+                    } else {
+                        document.getElementById("extra1View").style.display = "block";
+                    }
+                } else {
+                    document.getElementById("extra1View").style.display = "none";
+                }
             }
             if (extra2OnV == 1) {
                 if (customGenre == 1) {
@@ -742,7 +724,11 @@
             if (genreV == 1) {
                 document.getElementById("dansuiOn").style.display = "block";
             } else {
-                document.getElementById("dansuiOn").style.display = "none";
+                if (customGenre == 1) {
+                    document.getElementById("dansuiOn").style.display = "block";
+                } else {
+                    document.getElementById("dansuiOn").style.display = "none";
+                }
             }
             if (dansuiT == 1) {
                 document.getElementById("dansuiStart").style.display = "none";
