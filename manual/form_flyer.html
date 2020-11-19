@@ -299,8 +299,8 @@
                             <tr>
                                 <th>注(断水)</th>
                                 <td>：<select name="extra1On" onChange="changes()">
-                                        <option value="0">無</option>
-                                        <option value="1">有</option>
+                                        <option value="0">有</option>
+                                        <option value="1">無</option>
                                     </select>
                                 </td>
                             </tr>
@@ -659,6 +659,9 @@
                 document.getElementById("dansuiOn").style.display = "block";
                 document.getElementById("dansuiView").style.display = "block";
             } else {
+                document.getElementById("extra1").style.display = "none";
+                document.getElementById("extra2").style.display = "none";
+                document.getElementById("extra3").style.display = "none";
                 document.getElementById("previewSelect").innerHTML = genre1[genreV];
                 document.getElementById("previewGenre").innerHTML = genre2[genreV];
                 document.getElementById("infoinner").innerHTML = innerV[genreV];
@@ -689,6 +692,24 @@
             }
 
             //注釈分岐
+            if (extra1OnV == 1) {
+                if (customGenre == 1) {
+                    document.getElementById("extra1View").style.display = "none";
+                } else {
+                    document.getElementById("extra1View").style.display = "block";
+                }
+            } else {
+                document.getElementById("extra1View").style.display = "block";
+            }
+            if (extra2OnV == 1) {
+                if (customGenre == 1) {
+                    document.getElementById("extra2View").style.display = "none";
+                } else {
+                    document.getElementById("extra2View").style.display = "block";
+                }
+            } else {
+                document.getElementById("extra2View").style.display = "block";
+            }
             if (extra3OnV == 1) {
                 document.getElementById("annai").style.display = "block";
                 if (customGenre == 1) {
@@ -718,6 +739,11 @@
             }
 
             //断水時間
+            if (genreV == 1) {
+                document.getElementById("dansuiOn").style.display = "block";
+            } else {
+                document.getElementById("dansuiOn").style.display = "none";
+            }
             if (dansuiT == 1) {
                 document.getElementById("dansuiStart").style.display = "none";
                 document.getElementById("dansuiOwari").style.display = "none";
